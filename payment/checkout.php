@@ -40,8 +40,7 @@ $item = $stmt->fetch();
 $item_name = $item['name'] ?? 'Réservation Taghazout';
 
 // ─── Stripe ───────────────────────────────────────────────
-\Stripe\Stripe::setApiKey('hh');
-
+\Stripe\Stripe::setApiKey('your_stripe_test_key_here');
 $checkout = \Stripe\Checkout\Session::create([
     'payment_method_types' => ['card'],
     'line_items' => [[
