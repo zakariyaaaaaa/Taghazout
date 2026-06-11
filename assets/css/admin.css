@@ -129,7 +129,7 @@ button { cursor: pointer; font-family: inherit; }
   justify-content: center;
   font-size: 1rem;
   flex-shrink: 0;
-  box-shadow: 0 4px 14px rgba(63,184,160,0.35);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
 .sb-logo-text {
@@ -461,7 +461,6 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 .stat-card:hover {
-  transform: none;
   box-shadow: var(--shadow-md);
 }
 
@@ -590,8 +589,7 @@ button { cursor: pointer; font-family: inherit; }
   border-color: var(--ocean-foam);
   color: var(--ocean-teal);
   box-shadow: var(--shadow-sm);
-
-transform: translateX(1px);}
+}
 
 .card-header {
   display: flex;
@@ -780,7 +778,6 @@ transform: translateX(1px);}
 
 .btn-primary:hover {
   opacity: .9;
-  transform: translateY(-1px);
   box-shadow: 0 6px 22px rgba(14,124,107,0.32);
 }
 
@@ -1163,4 +1160,15 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
 @media (max-width: 480px) {
   .stats-grid { grid-template-columns: 1fr; }
   .page-header { flex-direction: column; }
+}
+* { transform: none !important; }
+.admin-table tbody tr:hover,
+.stat-card:hover,
+.card:hover,
+.btn:hover,
+.btn-primary:hover,
+.quick-action:hover,
+.icon-btn:hover,
+.u-stat:hover {
+    transform: none !important;
 }

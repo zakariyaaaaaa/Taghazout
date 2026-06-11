@@ -127,8 +127,8 @@ $level_color = $level_colors[$course['level']] ?? 'var(--primary)';
     <title><?= htmlspecialchars($course['title']) ?> — Taghazout</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/hotel-details.css">
-    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="stylesheet" href="../assets/css/hotel-details.css">
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
 </head>
 <body>
 
@@ -137,8 +137,8 @@ $level_color = $level_colors[$course['level']] ?? 'var(--primary)';
 <!-- HERO -->
 <div class="detail-hero">
     <img
-        src="uploads/surf/<?= htmlspecialchars($course['image'] ?? '') ?>"
-        onerror="this.src='assets/images/default.jpg'"
+        src="../uploads/surf/<?= htmlspecialchars($course['image'] ?? '') ?>"
+        onerror="this.src='../assets/images/default.jpg'"
         alt="<?= htmlspecialchars($course['title']) ?>"
     >
     <div class="detail-hero-overlay"></div>
@@ -270,8 +270,8 @@ $level_color = $level_colors[$course['level']] ?? 'var(--primary)';
                 <div class="review-item">
                     <div class="review-header">
                         <img
-                            src="uploads/users/<?= htmlspecialchars($rev['user_avatar'] ?? '') ?>"
-                            onerror="this.src='assets/images/default.jpg'"
+                            src="../uploads/users/<?= htmlspecialchars($rev['user_avatar'] ?? '') ?>"
+                            onerror="this.src='../assets/images/default.jpg'"
                             alt="<?= htmlspecialchars($rev['user_name']) ?>"
                             class="review-avatar"
                         >
@@ -381,8 +381,8 @@ $level_color = $level_colors[$course['level']] ?? 'var(--primary)';
             <!-- ✅ FIX 2 — lien vers surf-course-details.php -->
             <a href="surf-course-details.php?id=<?= $sim['id'] ?>" class="similar-card">
                 <img
-                    src="uploads/surf/<?= htmlspecialchars($sim['image'] ?? '') ?>"
-                    onerror="this.src='assets/images/default.jpg'"
+                    src="../uploads/surf/<?= htmlspecialchars($sim['image'] ?? '') ?>"
+                    onerror="this.src='../assets/images/default.jpg'"
                     alt="<?= htmlspecialchars($sim['title']) ?>"
                 >
                 <div class="similar-info">
@@ -399,7 +399,7 @@ $level_color = $level_colors[$course['level']] ?? 'var(--primary)';
 </div>
 
 <?php require_once 'includes/footer.php'; ?>
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/main.js"></script>
 <script>
 const pricePerPerson = <?= (float)$course['price'] ?>;
 const guestsSelect   = document.getElementById('guests-select');

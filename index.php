@@ -49,29 +49,7 @@ $courses = $stmt->fetchAll();
     </div>
 </section>
 
-<!-- ==============================
-     STATS SECTION
-============================== -->
-<section class="stats">
-    <div class="stats-container">
-        <div class="stat-item">
-            <h2>50+</h2>
-            <p>Hôtels</p>
-        </div>
-        <div class="stat-item">
-            <h2>100+</h2>
-            <p>Activités</p>
-        </div>
-        <div class="stat-item">
-            <h2>30+</h2>
-            <p>Cours de Surf</p>
-        </div>
-        <div class="stat-item">
-            <h2>5000+</h2>
-            <p>Clients Satisfaits</p>
-        </div>
-    </div>
-</section>
+
 
 <!-- ==============================
      HOTELS SECTION
@@ -87,7 +65,8 @@ $courses = $stmt->fetchAll();
             <div class="card">
                 <div class="card-img">
                     <img src="../uploads/hotels/<?= htmlspecialchars($hotel['image']) ?>"
-                    onerror="this.src='../assets/images/default.jpg'"                         alt="<?= htmlspecialchars($hotel['name']) ?>">
+                    onerror="this.src='../assets/images/default.jpg'"                         
+                    alt="<?= htmlspecialchars($hotel['name']) ?>">
                     <span class="card-badge">⭐ <?= $hotel['rating'] ?></span>
                 </div>
                 <div class="card-body">
@@ -159,7 +138,7 @@ $courses = $stmt->fetchAll();
                     <p>⏱️ <?= htmlspecialchars($course['duration']) ?></p>
                     <div class="card-footer">
                         <span class="price"><?= $course['price'] ?> MAD</span>
-                        <a href="course-details.php?id=<?= $course['id'] ?>" class="btn-card">Voir</a>
+                        <a href="Surf-course-details.php?id=<?= $course['id'] ?>" class="btn-card">Voir</a>
                     </div>
                 </div>
             </div>

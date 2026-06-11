@@ -15,8 +15,11 @@ $min_rating = isset($_GET['rating'])    ? (float)$_GET['rating']   : 0;
 $type       = isset($_GET['type'])      ? trim($_GET['type'])       : '';
 $sort       = isset($_GET['sort'])      ? trim($_GET['sort'])       : 'rating_desc';
 
-// ─── Build WHERE ──────────────────────────────────────────
+// ─── Build WHERE ───────────────────
+//SELECT * FROM hotels WHERE 1=1───────────────────
 $where = "WHERE 1=1";
+
+
 
 if ($search !== '') {
     $s = $pdo->quote("%$search%");
@@ -36,7 +39,7 @@ if ($type !== '') {
     $where .= " AND type = $t";
 }
 
-// ─── Sort ─────────────────────────────────────────────────
+// ─── Sort ───────────────────────────────────────\/ ──────────
 $order_map = [
     'rating_desc' => 'rating DESC',
     'price_asc'   => 'price ASC',
@@ -177,9 +180,7 @@ $types = $pdo->query("SELECT DISTINCT type FROM hotels WHERE type IS NOT NULL OR
                 <?php if (!empty($hotel['type'])): ?>
                     <span class="card-type"><?= htmlspecialchars($hotel['type']) ?></span>
                 <?php endif; ?>
-                        <?php if (isset($_SESSION['user_id'])): ?>
-                    <button class="btn-favorite" data-id="<?= $hotel['id'] ?>" data-type="hotel">♥</button>
-                    <?php endif; ?>
+
             </div>
             <div class="card-body">
                 <h3><?= htmlspecialchars($hotel['name']) ?></h3>
@@ -236,28 +237,7 @@ $base_url   = 'hotels.php?' . ($base_query ? $base_query . '&' : '');
 <?php require_once 'includes/footer.php'; ?>
 <script src="../assets/js/main.js"></script>
 <script src="../assets/js/navbar.js"></script>
-<script>document.querySelectorAll('.btn-favorite').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const id   = this.dataset.id;
-        const type = this.dataset.type;
 
-            fetch('http://localhost/taghazout_platform/api/favorites.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: parseInt(id), type })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.added) {
-                this.classList.add('active');
-                this.textContent = '♥';
-            } else {
-                this.classList.remove('active');
-                this.textContent = '♥';
-            }
-        });
-    });
-});
 </script>
 </body>
 </html>

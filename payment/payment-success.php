@@ -17,7 +17,8 @@ if (!$booking_id) {
 }
 
 // ─── Verify with Stripe ───────────────────────────────────
-\Stripe\Stripe::setApiKey('your_stripe_test_key_here');
+\Stripe\Stripe::setApiKey('sk_test_51TOagtBLRMTX4QBlssAcnT5x5neZvW4G2pjZ8IJ6ncOXdWRhXaOhUM5VV316jXPCldLU8xOlV2c78xoPcrzDfTri00T9nZSBNE');
+
 try {
     $session = \Stripe\Checkout\Session::retrieve($session_id);
 

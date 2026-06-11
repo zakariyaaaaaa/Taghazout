@@ -149,7 +149,7 @@ $activities  = $pdo->query("SELECT * FROM activities $where ORDER BY $order LIMI
         <div class="hotel-card">
             <div class="card-img">
                 <img
-                    src="../assets/images/activities/<?= htmlspecialchars($activity['image'] ?? '') ?>"
+                    src="../uploads/activities/<?= htmlspecialchars($activity['image'] ?? '') ?>"
                     onerror="this.src='../assets/images/default.jpg'"
                     alt="<?= htmlspecialchars($activity['name']) ?>"
                     loading="lazy"

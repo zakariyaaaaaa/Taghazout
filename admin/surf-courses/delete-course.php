@@ -33,8 +33,9 @@ if (!$course) {
 // Handle confirmed deletion
 if (isset($_POST['confirm_delete'])) {
     // Delete image file if exists
-    if (!empty($course['image']) && file_exists($course['image'])) {
-        unlink($course['image']);
+    if (!empty($course['image'])) {
+        $img_path = '../../uploads/surf/' . $course['image'];
+        if (file_exists($img_path)) unlink($img_path);
     }
 
     // Delete from database

@@ -60,28 +60,7 @@ $cuisines = $pdo->query("SELECT DISTINCT cuisine FROM restaurants WHERE cuisine 
 </head>
 <body>
 <div class="admin-shell">
-<aside class="admin-sidebar">
-    <div class="sb-logo"><div class="sb-logo-mark">🏄</div><div class="sb-logo-text"><strong>Taghazout</strong><span>Admin Panel</span></div></div>
-    <div class="sb-label">Dashboard</div>
-    <nav class="sb-nav">
-        <a href="../dashboard.php"><span class="nav-icon">📊</span><span>Dashboard</span></a>
-        <div class="sb-label">Contenu</div>
-        <a href="../hotels/hotels.php"><span class="nav-icon">🏨</span><span>Hotels</span></a>
-        <a href="../activities/activities.php"><span class="nav-icon">🎯</span><span>Activities</span></a>
-        <a href="../surf-courses/courses.php"><span class="nav-icon">🏄</span><span>Surf Courses</span></a>
-        <a href="restaurants.php" class="active"><span class="nav-icon">🍽️</span><span>Restaurants</span></a>
-        <div class="sb-label">Gestion</div>
-        <a href="../bookings/bookings.php"><span class="nav-icon">📅</span><span>Bookings</span></a>
-        <a href="../payments/payments.php"><span class="nav-icon">💳</span><span>Payments</span></a>
-        <a href="../users/users.php"><span class="nav-icon">👥</span><span>Users</span></a>
-        <a href="../reviews/reviews.php"><span class="nav-icon">⭐</span><span>Reviews</span></a>
-    </nav>
-    <div class="sb-admin">
-        <img src="../../assets/images/default.jpg" class="sb-admin-avatar">
-        <div class="sb-admin-info"><strong><?= htmlspecialchars($_SESSION['username'] ?? 'Admin') ?></strong><span>Administrator</span></div>
-        <a href="../../auth/logout.php" class="sb-logout">🚪</a>
-    </div>
-</aside>
+<?php require_once __DIR__ . '/../includes/admin-sidebar.php'; ?>
 <main class="admin-main">
 <div class="admin-topbar">
     <div class="topbar-left"><div>

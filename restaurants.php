@@ -160,7 +160,7 @@ $price_labels = [
         <div class="hotel-card">
             <div class="card-img">
                 <img
-                    src="../assets/images/restaurants/<?= htmlspecialchars($restaurant['image'] ?? '') ?>"
+                    src="../uploads/restaurants/<?= htmlspecialchars($restaurant['image'] ?? '') ?>"
                     onerror="this.src='../assets/images/default.jpg'"
                     alt="<?= htmlspecialchars($restaurant['name']) ?>"
                     loading="lazy"

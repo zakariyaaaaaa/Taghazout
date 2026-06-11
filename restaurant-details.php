@@ -131,7 +131,7 @@ $price_labels = [
 <!-- HERO -->
 <div class="detail-hero">
     <img
-        src="../assets/images/restaurants/<?= htmlspecialchars($restaurant['image'] ?? '') ?>"
+        src="../uploads/restaurants/<?= htmlspecialchars($restaurant['image'] ?? '') ?>"
         onerror="this.src='../assets/images/default.jpg'"
         alt="<?= htmlspecialchars($restaurant['name']) ?>"
     >
@@ -332,7 +332,7 @@ $price_labels = [
             <?php foreach ($similar as $sim): ?>
             <a href="restaurant-details.php?id=<?= $sim['id'] ?>" class="similar-card">
                 <img
-                    src="../assets/images/restaurants/<?= htmlspecialchars($sim['image'] ?? '') ?>"
+                    src="../uploads/restaurants/<?= htmlspecialchars($sim['image'] ?? '') ?>"
                     onerror="this.src='../assets/images/default.jpg'"
                     alt="<?= htmlspecialchars($sim['name']) ?>"
                 >

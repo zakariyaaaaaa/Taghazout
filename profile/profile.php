@@ -269,6 +269,9 @@ $fav_icons = [
                     <span style="margin-left:auto;background:#ef4444;color:#fff;border-radius:20px;padding:.1rem .5rem;font-size:.72rem"><?= $unread ?></span>
                 <?php endif; ?>
             </a>
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                   <a href="../admin/dashboard.php">⚙️ Dashboard Admin</a>
+                    <?php endif; ?>
             <a href="#" data-tab="edit">⚙️ Modifier le profil</a>
             <a href="../auth/logout.php" class="logout">🚪 Se déconnecter</a>
         </nav>

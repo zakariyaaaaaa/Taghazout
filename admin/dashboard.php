@@ -64,130 +64,20 @@ $monthly = $pdo->query("
     <title>Dashboard Admin — Taghazout</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../assets/css/admin.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div class="admin-shell">
+
 <!-- ══════════════════════════════
      SIDEBAR
 ══════════════════════════════ -->
-<div class="admin-shell">
-<aside class="admin-sidebar">
-
-    <div class="sb-logo">
-
-        <div class="sb-logo-mark">
-            🏄
-        </div>
-
-        <div class="sb-logo-text">
-            <strong>Taghazout</strong>
-            <span>Admin Panel</span>
-        </div>
-
-    </div>
-
-    <div class="sb-label">
-        Dashboard
-    </div>
-
-    <nav class="sb-nav">
-
-        <a href="dashboard.php" class="active">
-            <span class="nav-icon">📊</span>
-            <span>Dashboard</span>
-        </a>
-
-        <a href="analytics.php">
-            <span class="nav-icon">📈</span>
-            <span>Analytics</span>
-        </a>
-
-        <div class="sb-label">
-            Contenu
-        </div>
-
-        <a href="hotels/hotels.php">
-            <span class="nav-icon">🏨</span>
-            <span>Hotels</span>
-        </a>
-
-        <a href="activities/activities.php">
-            <span class="nav-icon">🎯</span>
-            <span>Activities</span>
-        </a>
-
-        <a href="surf-courses/courses.php">
-            <span class="nav-icon">🏄</span>
-            <span>Surf Courses</span>
-        </a>
-
-        <a href="restaurants/restaurants.php">
-            <span class="nav-icon">🍽️</span>
-            <span>Restaurants</span>
-        </a>
-
-        <div class="sb-label">
-            Gestion
-        </div>
-
-        <a href="bookings/bookings.php">
-            <span class="nav-icon">📅</span>
-            <span>Bookings</span>
-
-            <?php if ($stats['pending'] > 0): ?>
-            <span class="nav-badge">
-                <?= $stats['pending'] ?>
-            </span>
-            <?php endif; ?>
-
-        </a>
-
-        <a href="payments/payments.php">
-            <span class="nav-icon">💳</span>
-            <span>Payments</span>
-        </a>
-
-        <a href="users/users.php">
-            <span class="nav-icon">👥</span>
-            <span>Users</span>
-        </a>
-
-        <a href="reviews/reviews.php">
-            <span class="nav-icon">⭐</span>
-            <span>Reviews</span>
-        </a>
-
-        <a href="messages/messages.php">
-            <span class="nav-icon">💬</span>
-            <span>Messages</span>
-        </a>
-
-    </nav>
-
-    <div class="sb-admin">
-
-        <img src="../assets/images/default.jpg"
-             class="sb-admin-avatar">
-
-        <div class="sb-admin-info">
-            <strong>
-                <?= htmlspecialchars($_SESSION['username']) ?>
-            </strong>
-
-            <span>Administrator</span>
-        </div>
-
-        <a href="../auth/logout.php" class="sb-logout">
-            🚪
-        </a>
-
-    </div>
-
-</aside>
-
-<!-- ══════════════════════════════
+<?php 
+$_SERVER['PHP_SELF'] = '/admin/dashboard.php'; // force active detection
+require_once __DIR__ . '/includes/admin-sidebar.php'; 
+?>p<!-- ══════════════════════════════
      MAIN
 ══════════════════════════════ -->
 <main class="admin-main">
@@ -480,6 +370,40 @@ new Chart(ctx, {
         }
     }
 });
+</script>
+<script>
+// Notifications badge — poll kol 5s
+(function(){
+    function pollUnread() {
+        fetch('../../user/messages/get-unread.php')
+            .then(r => r.json())
+            .then(data => {
+                if (!data.success) return;
+                const badge = document.querySelector('.sb-nav a[href*="messages"] .nav-badge');
+                const link  = document.querySelector('.sb-nav a[href*="messages"]');
+                if (!link) return;
+
+                let badge2 = link.querySelector('.nav-badge');
+                if (!badge2) {
+                    badge2 = document.createElement('span');
+                    badge2.className = 'nav-badge';
+                    link.appendChild(badge2);
+                }
+                if (data.count > 0) {
+                    badge2.textContent = data.count > 99 ? '99+' : data.count;
+                    badge2.style.display = 'inline-flex';
+                    // Update title
+                    document.title = `(${data.count}) ` + document.title.replace(/^\(\d+\) /,'');
+                } else {
+                    badge2.style.display = 'none';
+                    document.title = document.title.replace(/^\(\d+\) /,'');
+                }
+            })
+            .catch(()=>{});
+    }
+    pollUnread();
+    setInterval(pollUnread, 5000);
+})();
 </script>
 </body>
 </html>

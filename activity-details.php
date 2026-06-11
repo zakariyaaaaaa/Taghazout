@@ -123,14 +123,14 @@ $similar = $sim_stmt->fetchAll();
 <!-- HERO -->
 <div class="detail-hero">
     <img
-        src="../assets/images/activities/<?= htmlspecialchars($activity['image'] ?? '') ?>"
+        src="../uploads/activities/<?= htmlspecialchars($activity['image'] ?? '') ?>"
         onerror="this.src='../assets/images/default.jpg'"
         alt="<?= htmlspecialchars($activity['name']) ?>"
     >
     <div class="detail-hero-overlay"></div>
 
     <?php if (isset($_SESSION['user_id'])): ?>
-    <a href="activity-details.php?id=<?= $id ?>&toggle_fav=1" class="fav-btn" title="<?= $is_favorite ? 'Retirer des favoris' : 'Ajouter aux favoris' ?>">
+    <a href="activity-details.php?id=<?= $id ?>&toggle_fav=1" class="fav-btn" >
         <?= $is_favorite ? '❤️' : '🤍' ?>
     </a>
     <?php endif; ?>
@@ -319,7 +319,7 @@ $similar = $sim_stmt->fetchAll();
             <?php foreach ($similar as $sim): ?>
             <a href="activity-details.php?id=<?= $sim['id'] ?>" class="similar-card">
                 <img
-                    src="../assets/images/activities/<?= htmlspecialchars($sim['image'] ?? '') ?>"
+                    src="../uploads/activities/<?= htmlspecialchars($sim['image'] ?? '') ?>"
                     onerror="this.src='../assets/images/default.jpg'"
                     alt="<?= htmlspecialchars($sim['name']) ?>"
                 >

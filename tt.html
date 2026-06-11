@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Taghazout v2 — Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --blue:    #1E6FD9;
+  --blue-d:  #0f4fa8;
+  --blue-l:  #5b9fe8;
+  --sky:     #0EA5E9;
+  --white:   #FFFFFF;
+  --sand:    #F5E6C8;
+  --sand-d:  #D4A96A;
+  --bg:      #F8FAFE;
+  --ink:     #0D1C35;
+  --ink-m:   #3a4f6e;
+  --ink-l:   #7a8fa8;
+  --border:  rgba(30,111,217,0.12);
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ── CURSOR ── */
+.cursor { position:fixed; width:10px; height:10px; background:var(--blue); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .2s,height .2s; mix-blend-mode:multiply; }
+.cursor-ring { position:fixed; width:32px; height:32px; border:1.5px solid rgba(30,111,217,.35); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:transform .12s ease-out; }
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  padding:18px 64px;
+  display:flex; justify-content:space-between; align-items:center;
+  background:rgba(248,250,254,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand { display:flex; align-items:center; gap:12px; }
+.nav-logo-mark {
+  width:36px; height:36px; border-radius:10px;
+  background:var(--blue);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif; font-weight:900; font-size:18px; color:#fff;
+}
+.nav-name { font-weight:700; font-size:15px; letter-spacing:.5px; color:var(--ink); }
+.nav-sub { font-size:11px; color:var(--ink-l); letter-spacing:1px; text-transform:uppercase; }
+.nav-links { display:flex; gap:28px; list-style:none; }
+.nav-links a { font-size:13px; font-weight:500; color:var(--ink-m); text-decoration:none; letter-spacing:.3px; transition:color .2s; }
+.nav-links a:hover { color:var(--blue); }
+.nav-badge { padding:8px 20px; background:var(--blue); color:#fff; border-radius:100px; font-size:12px; font-weight:700; letter-spacing:.5px; text-decoration:none; transition:background .2s, transform .2s; }
+.nav-badge:hover { background:var(--blue-d); transform:translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  display:grid; grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:140px 64px 80px;
+  position:relative;
+  overflow:hidden;
+  gap:60px;
+}
+.hero::before {
+  content:'';
+  position:absolute; top:-20%; right:-10%;
+  width:60%; height:120%;
+  background:radial-gradient(ellipse, rgba(30,111,217,.07) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-dots {
+  position:absolute; top:0; left:0; right:0; bottom:0;
+  background-image:radial-gradient(circle, rgba(30,111,217,.08) 1px, transparent 1px);
+  background-size:36px 36px;
+  pointer-events:none;
+  mask-image:radial-gradient(ellipse at 80% 50%, black 0%, transparent 70%);
+}
+.hero-label {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:7px 16px; border-radius:100px;
+  background:rgba(30,111,217,.08); border:1px solid rgba(30,111,217,.15);
+  font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  color:var(--blue); margin-bottom:28px;
+  animation:fadeUp .7s ease both;
+}
+.hero-label::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--blue); animation:blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+.hero-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(48px,5.5vw,76px);
+  font-weight:900; line-height:1.05;
+  color:var(--ink); margin-bottom:24px;
+  animation:fadeUp .8s .1s ease both;
+}
+.hero-title em { font-style:italic; color:var(--blue); }
+.hero-desc {
+  font-size:17px; line-height:1.75;
+  color:var(--ink-m); margin-bottom:48px;
+  max-width:500px;
+  animation:fadeUp .9s .2s ease both;
+}
+.hero-cta {
+  display:flex; gap:16px; flex-wrap:wrap;
+  animation:fadeUp 1s .3s ease both;
+}
+.btn-primary {
+  padding:14px 32px; background:var(--blue); color:#fff;
+  border-radius:12px; font-weight:700; font-size:14px;
+  text-decoration:none; transition:all .2s;
+  box-shadow:0 4px 20px rgba(30,111,217,.3);
+}
+.btn-primary:hover { background:var(--blue-d); transform:translateY(-2px); box-shadow:0 8px 28px rgba(30,111,217,.4); }
+.btn-outline {
+  padding:14px 32px; border:1.5px solid var(--border);
+  color:var(--ink-m); border-radius:12px; font-weight:600; font-size:14px;
+  text-decoration:none; transition:all .2s; background:white;
+}
+.btn-outline:hover { border-color:var(--blue); color:var(--blue); }
+
+.hero-right { animation:fadeUp .9s .15s ease both; }
+.hero-card {
+  background:white; border-radius:24px;
+  border:1px solid var(--border);
+  padding:40px;
+  box-shadow:0 20px 60px rgba(30,111,217,.08);
+  position:relative;
+}
+.hero-card::before {
+  content:'';
+  position:absolute; top:0; left:32px; right:32px; height:3px;
+  background:linear-gradient(to right, var(--blue), var(--sky));
+  border-radius:0 0 4px 4px;
+}
+.hc-title { font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--ink-l); margin-bottom:24px; }
+.color-palette { display:flex; flex-direction:column; gap:16px; }
+.palette-row { display:flex; align-items:center; gap:16px; }
+.color-swatch {
+  width:48px; height:48px; border-radius:12px;
+  flex-shrink:0; position:relative; overflow:hidden;
+}
+.color-swatch::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+}
+.swatch-ocean { background:#1E6FD9; box-shadow:0 4px 12px rgba(30,111,217,.35); }
+.swatch-sky   { background:#0EA5E9; box-shadow:0 4px 12px rgba(14,165,233,.3); }
+.swatch-white { background:#FFFFFF; border:1.5px solid var(--border); }
+.swatch-sand  { background:#F5E6C8; }
+.swatch-sand2 { background:#D4A96A; }
+.color-info .cn { font-size:14px; font-weight:700; color:var(--ink); }
+.color-info .ch { font-size:12px; font-family:monospace; color:var(--ink-l); margin-top:2px; }
+.color-info .cd { font-size:12px; color:var(--ink-m); margin-top:2px; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── SECTIONS ── */
+.wrap { max-width:1200px; margin:0 auto; padding:0 64px; }
+section { padding:100px 0; }
+section + section { border-top:1px solid var(--border); }
+
+.sec-eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+  color:var(--blue); margin-bottom:16px;
+}
+.sec-eyebrow::before { content:''; width:20px; height:2px; background:var(--blue); border-radius:2px; }
+.sec-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(34px,4vw,52px); font-weight:900; line-height:1.1;
+  color:var(--ink); margin-bottom:16px;
+}
+.sec-title em { font-style:italic; color:var(--blue); }
+.sec-sub { font-size:17px; color:var(--ink-m); line-height:1.7; max-width:560px; margin-bottom:60px; }
+
+/* ── WHY COLORS ── */
+.why-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+}
+.why-card {
+  background:white; border-radius:20px; padding:36px 32px;
+  border:1px solid var(--border);
+  transition:all .3s; position:relative; overflow:hidden;
+}
+.why-card::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+  background:linear-gradient(to right,var(--blue),var(--sky));
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .3s;
+}
+.why-card:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(30,111,217,.1); }
+.why-card:hover::after { transform:scaleX(1); }
+.wc-color {
+  width:56px; height:56px; border-radius:16px;
+  margin-bottom:24px; position:relative; overflow:hidden;
+}
+.wc-color::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,.2),transparent); }
+.wc-name { font-size:18px; font-weight:700; color:var(--ink); margin-bottom:10px; }
+.wc-hex { font-family:monospace; font-size:13px; color:var(--ink-l); margin-bottom:16px;
+  padding:4px 10px; background:var(--bg); border-radius:6px; display:inline-block; }
+.wc-why { font-size:14px; color:var(--ink-m); line-height:1.7; }
+.wc-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; }
+.wc-tag { padding:4px 10px; border-radius:100px; font-size:11px; font-weight:600;
+  background:rgba(30,111,217,.06); color:var(--blue); border:1px solid rgba(30,111,217,.12); }
+
+/* ── TYPOGRAPHY ── */
+.type-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+.type-card {
+  background:white; border-radius:20px; padding:40px;
+  border:1px solid var(--border);
+}
+.type-label { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--ink-l); margin-bottom:20px; }
+.type-specimen-1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,4vw,52px); font-weight:900; line-height:1.05;
+  color:var(--ink); margin-bottom:16px;
+}
+.type-specimen-1 em { font-style:italic; color:var(--blue); }
+.type-specimen-2 {
+  font-family:'Outfit',sans-serif;
+  font-size:22px; font-weight:300; line-height:1.6;
+  color:var(--ink-m); margin-bottom:16px;
+  letter-spacing:.3px;
+}
+.type-meta { font-size:12px; color:var(--ink-l); line-height:1.8; }
+.type-meta span { color:var(--ink); font-weight:600; }
+.type-why { font-size:14px; color:var(--ink-m); line-height:1.7; margin-top:20px;
+  padding:16px; background:rgba(30,111,217,.04); border-radius:10px;
+  border-left:3px solid var(--blue); }
+
+/* ── UX PRINCIPLES ── */
+.ux-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+.ux-card {
+  background:white; border-radius:20px; padding:36px;
+  border:1px solid var(--border);
+  display:flex; gap:24px; align-items:flex-start;
+  transition:all .3s;
+}
+.ux-card:hover { box-shadow:0 12px 40px rgba(30,111,217,.08); transform:translateY(-3px); }
+.ux-icon {
+  width:56px; height:56px; border-radius:14px; flex-shrink:0;
+  background:rgba(30,111,217,.08); border:1px solid rgba(30,111,217,.12);
+  display:flex; align-items:center; justify-content:center;
+  font-size:26px;
+}
+.ux-content {}
+.ux-title { font-size:17px; font-weight:700; color:var(--ink); margin-bottom:8px; }
+.ux-desc { font-size:14px; color:var(--ink-m); line-height:1.7; }
+.ux-impact {
+  margin-top:12px; display:inline-flex; align-items:center; gap:6px;
+  font-size:12px; font-weight:600; color:var(--blue);
+  padding:4px 12px; background:rgba(30,111,217,.06); border-radius:100px;
+}
+
+/* ── COMPONENTS ── */
+.comp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.comp-card {
+  background:white; border-radius:20px; overflow:hidden;
+  border:1px solid var(--border);
+  transition:all .3s;
+}
+.comp-card:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(30,111,217,.1); }
+.comp-preview {
+  height:180px; background:var(--bg);
+  display:flex; align-items:center; justify-content:center;
+  border-bottom:1px solid var(--border);
+  padding:24px; position:relative; overflow:hidden;
+}
+.comp-info { padding:24px; }
+.comp-name { font-size:15px; font-weight:700; color:var(--ink); margin-bottom:8px; }
+.comp-desc { font-size:13px; color:var(--ink-m); line-height:1.6; }
+
+/* Mock components */
+.mock-nav {
+  width:100%; background:white; border-radius:12px; padding:12px 16px;
+  display:flex; justify-content:space-between; align-items:center;
+  border:1px solid var(--border);
+  box-shadow:0 4px 16px rgba(0,0,0,.06);
+}
+.mock-logo { width:28px; height:28px; background:var(--blue); border-radius:7px; }
+.mock-links { display:flex; gap:10px; }
+.mock-link { width:30px; height:8px; background:var(--border); border-radius:4px; }
+.mock-link.act { background:var(--blue); }
+.mock-btn-sm { padding:6px 14px; background:var(--blue); border-radius:8px; font-size:11px; color:white; font-weight:700; }
+
+.mock-card-hotel {
+  width:100%; background:white; border-radius:14px; overflow:hidden;
+  border:1px solid var(--border); box-shadow:0 4px 16px rgba(0,0,0,.06);
+}
+.mock-img { height:80px; background:linear-gradient(135deg,var(--blue-l),var(--sky)); position:relative; }
+.mock-img::after { content:'🏄'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:28px; }
+.mock-card-body { padding:12px; }
+.mock-card-title { width:70%; height:9px; background:var(--ink); border-radius:4px; margin-bottom:6px; }
+.mock-card-sub { width:50%; height:7px; background:var(--border); border-radius:4px; margin-bottom:10px; }
+.mock-card-row { display:flex; justify-content:space-between; align-items:center; }
+.mock-price { font-size:12px; font-weight:700; color:var(--blue); }
+.mock-stars { font-size:10px; }
+
+.mock-form {
+  width:100%; background:white; border-radius:14px; padding:16px;
+  border:1px solid var(--border); box-shadow:0 4px 16px rgba(0,0,0,.06);
+}
+.mock-input {
+  height:32px; background:var(--bg); border-radius:8px; margin-bottom:8px;
+  border:1.5px solid var(--border); width:100%; display:flex; align-items:center; padding:0 10px;
+  font-size:11px; color:var(--ink-l);
+}
+.mock-input.active { border-color:var(--blue); }
+.mock-submit { width:100%; height:32px; background:var(--blue); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:11px; color:white; font-weight:700; }
+
+.mock-dash {
+  width:100%; background:white; border-radius:14px; padding:14px;
+  border:1px solid var(--border); box-shadow:0 4px 16px rgba(0,0,0,.06);
+}
+.mock-dash-header { display:flex; justify-content:space-between; margin-bottom:10px; }
+.mock-stat { text-align:center; }
+.mock-stat-n { font-size:16px; font-weight:700; color:var(--blue); }
+.mock-stat-l { font-size:9px; color:var(--ink-l); margin-top:2px; }
+.mock-chart { height:50px; background:var(--bg); border-radius:8px; overflow:hidden; display:flex; align-items:flex-end; gap:3px; padding:6px; }
+.mock-bar { background:var(--blue); border-radius:3px 3px 0 0; flex:1; opacity:.7; transition:opacity .2s; }
+.mock-bar:hover { opacity:1; }
+
+.mock-msg {
+  width:100%; display:flex; flex-direction:column; gap:8px;
+}
+.mock-bubble {
+  padding:10px 14px; border-radius:14px; font-size:11px; line-height:1.4; max-width:80%;
+}
+.mock-bubble.me { background:var(--blue); color:white; align-self:flex-end; border-radius:14px 14px 4px 14px; }
+.mock-bubble.them { background:white; border:1px solid var(--border); color:var(--ink); align-self:flex-start; border-radius:14px 14px 14px 4px; }
+
+.mock-dark {
+  width:100%; background:#0d1c35; border-radius:14px; padding:14px;
+  border:1px solid rgba(255,255,255,.06);
+}
+.mock-dark-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.mock-dark-logo { width:24px; height:24px; background:var(--blue); border-radius:6px; }
+.mock-dark-toggle { width:36px; height:18px; background:var(--blue); border-radius:100px; position:relative; }
+.mock-dark-toggle::after { content:''; position:absolute; right:2px; top:2px; width:14px; height:14px; background:white; border-radius:50%; }
+.mock-dark-lines { display:flex; flex-direction:column; gap:6px; }
+.mock-dark-line { height:7px; background:rgba(255,255,255,.08); border-radius:4px; }
+.mock-dark-line:nth-child(1){ width:80%; }
+.mock-dark-line:nth-child(2){ width:60%; }
+.mock-dark-line:nth-child(3){ width:90%; }
+.mock-dark-btn { margin-top:12px; height:28px; background:var(--blue); border-radius:8px; }
+
+/* ── RESPONSIVE ── */
+.resp-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+.resp-devices { display:flex; gap:16px; align-items:flex-end; justify-content:center; }
+.resp-desktop {
+  width:260px; height:160px; background:white; border-radius:12px 12px 0 0;
+  border:2px solid var(--border); position:relative; overflow:hidden;
+}
+.resp-desktop::after { content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%); width:60px; height:12px; background:var(--border); }
+.resp-tablet {
+  width:120px; height:160px; background:white; border-radius:10px;
+  border:2px solid var(--border); position:relative; overflow:hidden;
+}
+.resp-mobile {
+  width:70px; height:130px; background:white; border-radius:14px;
+  border:2px solid var(--border); position:relative; overflow:hidden;
+}
+.resp-screen { position:absolute; inset:8px; background:var(--bg); border-radius:6px; overflow:hidden; display:flex; flex-direction:column; gap:4px; padding:6px; }
+.resp-bar { height:5px; background:var(--blue); border-radius:3px; opacity:.4; }
+.resp-bar:nth-child(2){ width:70%; opacity:.2; }
+.resp-bar:nth-child(3){ width:85%; opacity:.2; }
+.resp-bar:nth-child(4){ width:50%; opacity:.2; }
+.resp-info h3 { font-family:'Playfair Display',serif; font-size:32px; font-weight:900; color:var(--ink); margin-bottom:20px; }
+.resp-info h3 em { font-style:italic; color:var(--blue); }
+.resp-list { display:flex; flex-direction:column; gap:14px; }
+.resp-item { display:flex; align-items:flex-start; gap:14px; }
+.resp-dot { width:8px; height:8px; border-radius:50%; background:var(--blue); flex-shrink:0; margin-top:7px; }
+.resp-text { font-size:15px; color:var(--ink-m); line-height:1.6; }
+.resp-text strong { color:var(--ink); font-weight:700; }
+
+/* ── MCD SECTION ── */
+.db-layout { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+.db-img-wrap {
+  background:white; border-radius:20px; padding:16px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 32px rgba(30,111,217,.07);
+}
+.db-img-wrap img { width:100%; border-radius:12px; display:block; }
+.db-desc h3 { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; color:var(--ink); margin-bottom:16px; }
+.db-desc p { font-size:15px; color:var(--ink-m); line-height:1.75; margin-bottom:20px; }
+.db-stats { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:24px; }
+.db-stat {
+  padding:20px; background:white; border-radius:14px; border:1px solid var(--border);
+  text-align:center;
+}
+.db-stat-n { font-family:'Playfair Display',serif; font-size:32px; font-weight:900; color:var(--blue); }
+.db-stat-l { font-size:12px; color:var(--ink-l); margin-top:4px; letter-spacing:.5px; text-transform:uppercase; }
+
+/* ── FIGMA LINK ── */
+.figma-banner {
+  background:var(--blue);
+  border-radius:24px;
+  padding:60px;
+  display:flex; align-items:center; justify-content:space-between; gap:40px;
+  flex-wrap:wrap;
+  position:relative; overflow:hidden;
+}
+.figma-banner::before {
+  content:'';
+  position:absolute; top:-50%; right:-10%;
+  width:400px; height:400px;
+  background:radial-gradient(circle, rgba(255,255,255,.1) 0%, transparent 70%);
+}
+.figma-banner::after {
+  content:'';
+  position:absolute; bottom:-30%; left:10%;
+  width:300px; height:300px;
+  background:radial-gradient(circle, rgba(14,165,233,.3) 0%, transparent 70%);
+}
+.figma-text { position:relative; z-index:1; }
+.figma-eyebrow { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.6); margin-bottom:12px; }
+.figma-title { font-family:'Playfair Display',serif; font-size:42px; font-weight:900; color:white; line-height:1.1; margin-bottom:16px; }
+.figma-title em { font-style:italic; }
+.figma-desc { font-size:16px; color:rgba(255,255,255,.7); line-height:1.7; max-width:460px; }
+.figma-cta { position:relative; z-index:1; }
+.figma-btn {
+  display:inline-flex; align-items:center; gap:12px;
+  padding:18px 36px; background:white; color:var(--blue);
+  border-radius:14px; font-weight:700; font-size:16px;
+  text-decoration:none; transition:all .2s;
+  box-shadow:0 8px 32px rgba(0,0,0,.15);
+}
+.figma-btn:hover { transform:translateY(-3px) scale(1.02); box-shadow:0 16px 40px rgba(0,0,0,.2); }
+.figma-btn-icon { font-size:24px; }
+
+/* ── FOOTER ── */
+footer {
+  padding:60px 64px;
+  background:var(--ink);
+  color:rgba(255,255,255,.5);
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;
+}
+footer .ft-brand { font-family:'Playfair Display',serif; font-size:20px; font-weight:900; color:white; }
+footer .ft-sub { font-size:12px; margin-top:4px; }
+footer .ft-right { font-size:13px; text-align:right; }
+footer .ft-right a { color:var(--blue-l); text-decoration:none; }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(32px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity:1; transform:translateY(0); }
+
+@media(max-width:900px){
+  .hero { grid-template-columns:1fr; padding:120px 24px 60px; }
+  .hero-right { display:none; }
+  .wrap { padding:0 24px; }
+  .why-grid { grid-template-columns:1fr; }
+  .type-grid { grid-template-columns:1fr; }
+  .ux-grid { grid-template-columns:1fr; }
+  .comp-grid { grid-template-columns:1fr; }
+  .resp-grid { grid-template-columns:1fr; }
+  .db-layout { grid-template-columns:1fr; }
+  nav { padding:16px 24px; }
+  .nav-links { display:none; }
+  .figma-banner { padding:36px 24px; }
+  footer { padding:40px 24px; flex-direction:column; text-align:center; }
+  footer .ft-right { text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo-mark">T</div>
+    <div>
+      <div class="nav-name">Taghazout v2</div>
+      <div class="nav-sub">Design System</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#couleurs">Couleurs</a></li>
+    <li><a href="#typo">Typographie</a></li>
+    <li><a href="#ux">UX</a></li>
+    <li><a href="#composants">Composants</a></li>
+    <li><a href="#bdd">Base de données</a></li>
+  </ul>
+  <a href="https://www.figma.com/design/THQNT1UjzYcQwSPuRWNjWV/" class="nav-badge" target="_blank">Voir Figma →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-left">
+    <div class="hero-label">Design System · Taghazout v2</div>
+    <h1 class="hero-title">Pourquoi ces<br/><em>choix de design</em><br/>et pas d'autres ?</h1>
+    <p class="hero-desc">Une analyse complète des décisions visuelles qui définissent l'identité de la plateforme — couleurs, typographie, layout, composants et expérience utilisateur.</p>
+    <div class="hero-cta">
+      <a href="#couleurs" class="btn-primary">Explorer le design</a>
+      <a href="https://www.figma.com/design/THQNT1UjzYcQwSPuRWNjWV/" class="btn-outline" target="_blank">Figma →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hc-title">Palette principale</div>
+      <div class="color-palette">
+        <div class="palette-row">
+          <div class="color-swatch swatch-ocean"></div>
+          <div class="color-info">
+            <div class="cn">Bleu Atlantique</div>
+            <div class="ch">#1E6FD9</div>
+            <div class="cd">Couleur principale — confiance &amp; action</div>
+          </div>
+        </div>
+        <div class="palette-row">
+          <div class="color-swatch swatch-sky"></div>
+          <div class="color-info">
+            <div class="cn">Bleu Ciel</div>
+            <div class="ch">#0EA5E9</div>
+            <div class="cd">Accents — liens, hover, highlights</div>
+          </div>
+        </div>
+        <div class="palette-row">
+          <div class="color-swatch swatch-white"></div>
+          <div class="color-info">
+            <div class="cn">Blanc Pur</div>
+            <div class="ch">#FFFFFF</div>
+            <div class="cd">Fond principal — clarté &amp; lisibilité</div>
+          </div>
+        </div>
+        <div class="palette-row">
+          <div class="color-swatch swatch-sand"></div>
+          <div class="color-info">
+            <div class="cn">Sable Clair</div>
+            <div class="ch">#F5E6C8</div>
+            <div class="cd">Fonds secondaires — chaleur marocaine</div>
+          </div>
+        </div>
+        <div class="palette-row">
+          <div class="color-swatch swatch-sand2"></div>
+          <div class="color-info">
+            <div class="cn">Sable Doré</div>
+            <div class="ch">#D4A96A</div>
+            <div class="cd">Accents chaleureux — authenticité</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COULEURS -->
+<section id="couleurs">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Palette de couleurs</div>
+    <h2 class="sec-title reveal">Chaque couleur a<br/>une <em>raison d'être.</em></h2>
+    <p class="sec-sub reveal">La palette de Taghazout n'a pas été choisie au hasard. Chaque teinte raconte quelque chose — l'océan, le sable, le ciel. C'est l'identité visuelle de la ville transposée en interface digitale.</p>
+
+    <div class="why-grid">
+      <div class="why-card reveal" style="animation-delay:.05s">
+        <div class="wc-color" style="background:#1E6FD9;box-shadow:0 6px 20px rgba(30,111,217,.35)"></div>
+        <div class="wc-name">Bleu Atlantique</div>
+        <div class="wc-hex">#1E6FD9</div>
+        <div class="wc-why">C'est la couleur principale de la plateforme. Le bleu évoque immédiatement l'océan Atlantique qui borde Taghazout — la mer qui attire les surfeurs du monde entier. Psychologiquement, le bleu inspire <strong>confiance</strong>, <strong>sécurité</strong> et <strong>professionnalisme</strong>, des qualités essentielles pour une plateforme de réservation en ligne où l'utilisateur va payer de l'argent.</div>
+        <div class="wc-tags">
+          <span class="wc-tag">Confiance</span>
+          <span class="wc-tag">Océan Atlantique</span>
+          <span class="wc-tag">CTA principal</span>
+          <span class="wc-tag">Boutons</span>
+        </div>
+      </div>
+
+      <div class="why-card reveal" style="animation-delay:.1s">
+        <div class="wc-color" style="background:#0EA5E9;box-shadow:0 6px 20px rgba(14,165,233,.3)"></div>
+        <div class="wc-name">Bleu Ciel / Turquoise</div>
+        <div class="wc-hex">#0EA5E9</div>
+        <div class="wc-why">Couleur secondaire qui rappelle le ciel et les eaux peu profondes de la côte. Légèrement plus vif que le bleu principal, il crée une <strong>hiérarchie visuelle naturelle</strong>. Utilisé pour les hover states, les liens, et les accents — il guide l'œil sans distraire. Il représente aussi le <strong>surf et la liberté</strong>, l'âme de Taghazout.</div>
+        <div class="wc-tags">
+          <span class="wc-tag">Hover states</span>
+          <span class="wc-tag">Ciel & mer</span>
+          <span class="wc-tag">Liberté</span>
+          <span class="wc-tag">Accents</span>
+        </div>
+      </div>
+
+      <div class="why-card reveal" style="animation-delay:.15s">
+        <div class="wc-color" style="background:#FFFFFF;border:2px solid rgba(30,111,217,.15)"></div>
+        <div class="wc-name">Blanc Pur</div>
+        <div class="wc-hex">#FFFFFF</div>
+        <div class="wc-why">Le blanc est la <strong>respiration</strong> du design. Il maximise la lisibilité du contenu, met en valeur les photos des hôtels et activités, et donne une impression de <strong>propreté et modernité</strong>. Pour une plateforme touristique, le blanc crée l'espace visuel nécessaire pour présenter les offres sans surcharger l'utilisateur.</div>
+        <div class="wc-tags">
+          <span class="wc-tag">Fond principal</span>
+          <span class="wc-tag">Lisibilité</span>
+          <span class="wc-tag">Modernité</span>
+          <span class="wc-tag">Respiration</span>
+        </div>
+      </div>
+
+      <div class="why-card reveal" style="animation-delay:.2s">
+        <div class="wc-color" style="background:#F5E6C8;"></div>
+        <div class="wc-name">Sable Clair</div>
+        <div class="wc-hex">#F5E6C8</div>
+        <div class="wc-why">La couleur sable est l'âme du Maroc. Elle rappelle les plages de Taghazout, les souks, et la chaleur méditerranéenne. Utilisée pour les <strong>fonds secondaires</strong>, elle apporte une touche de <strong>chaleur et d'authenticité</strong> qui différencie la plateforme d'un site générique. Elle ancre visuellement l'expérience dans l'identité marocaine.</div>
+        <div class="wc-tags">
+          <span class="wc-tag">Plage de Taghazout</span>
+          <span class="wc-tag">Chaleur</span>
+          <span class="wc-tag">Maroc</span>
+          <span class="wc-tag">Fonds secondaires</span>
+        </div>
+      </div>
+
+      <div class="why-card reveal" style="animation-delay:.25s">
+        <div class="wc-color" style="background:#D4A96A;"></div>
+        <div class="wc-name">Sable Doré</div>
+        <div class="wc-hex">#D4A96A</div>
+        <div class="wc-why">Nuance plus chaude et dorée du sable — elle évoque le <strong>coucher de soleil sur l'Atlantique</strong>, moment magique de Taghazout. Utilisée comme accent pour les détails décoratifs et certains textes, elle renforce l'atmosphère <strong>premium et authentique</strong> de la plateforme et rappelle les tons de l'argan, trésor local.</div>
+        <div class="wc-tags">
+          <span class="wc-tag">Coucher de soleil</span>
+          <span class="wc-tag">Argan</span>
+          <span class="wc-tag">Premium</span>
+          <span class="wc-tag">Accents déco</span>
+        </div>
+      </div>
+
+      <div class="why-card reveal" style="animation-delay:.3s">
+        <div class="wc-color" style="background:#0D1C35;"></div>
+        <div class="wc-name">Bleu Nuit</div>
+        <div class="wc-hex">#0D1C35</div>
+        <div class="wc-why">Utilisé pour les textes principaux et le mode sombre. Ce bleu profond est <strong>plus doux et plus élégant qu'un noir pur</strong> — il garde la cohérence avec la palette bleue tout en offrant un contraste maximal. En dark mode, il crée une ambiance nocturne qui rappelle <strong>Taghazout la nuit</strong>, avec ses étoiles sur l'Atlantique.</div>
+        <div class="wc-tags">
+          <span class="wc-tag">Texte principal</span>
+          <span class="wc-tag">Dark Mode</span>
+          <span class="wc-tag">Nuit étoilée</span>
+          <span class="wc-tag">Contraste</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHIE -->
+<section id="typo" style="background:white;">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Typographie</div>
+    <h2 class="sec-title reveal">Les polices ne sont pas<br/><em>un détail.</em></h2>
+    <p class="sec-sub reveal">La typographie est la voix visuelle de la plateforme. Deux familles ont été sélectionnées pour créer une hiérarchie claire et une personnalité forte.</p>
+
+    <div class="type-grid reveal">
+      <div class="type-card">
+        <div class="type-label">Police de Titres — DM Sans / Syne</div>
+        <div class="type-specimen-1">Réservez votre<br/><em>surf à Taghazout.</em></div>
+        <div class="type-meta">
+          <span>Famille :</span> Syne / DM Sans Bold<br/>
+          <span>Poids :</span> 700–900 · <span>Usage :</span> Titres H1–H3<br/>
+          <span>Caractère :</span> Géométrique, moderne, fort
+        </div>
+        <div class="type-why">
+          <strong>Pourquoi ce choix ?</strong> Un titre gras et géométrique transmet immédiatement confiance et modernité. Pour une plateforme de réservation, les titres doivent être lisibles d'un coup d'œil et mémorables. L'italique apporte une touche dynamique qui rappelle le mouvement des vagues.
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-label">Police de Corps — DM Sans Regular</div>
+        <div class="type-specimen-2">Découvrez les meilleures activités de surf, les hôtels les plus agréables et les restaurants authentiques de Taghazout.</div>
+        <div class="type-meta">
+          <span>Famille :</span> DM Sans Regular / Light<br/>
+          <span>Poids :</span> 300–500 · <span>Usage :</span> Corps, descriptions, UI<br/>
+          <span>Caractère :</span> Lisible, neutre, élégant
+        </div>
+        <div class="type-why">
+          <strong>Pourquoi ce choix ?</strong> DM Sans est conçue pour les interfaces digitales — optimisée pour la lisibilité sur écran, petite taille comme grande. Sa neutralité met en valeur le contenu sans attirer l'attention sur elle-même, laissant les titres et photos jouer leur rôle.
+        </div>
+      </div>
+    </div>
+
+    <!-- Scale -->
+    <div class="reveal" style="margin-top:40px; background:var(--bg); border-radius:20px; padding:40px; border:1px solid var(--border);">
+      <div class="type-label" style="margin-bottom:32px">Échelle typographique — Hiérarchie visuelle</div>
+      <div style="font-family:'Playfair Display',serif; font-size:52px; font-weight:900; color:var(--ink); line-height:1; margin-bottom:20px;">H1 · 52px · Héros</div>
+      <div style="font-family:'Playfair Display',serif; font-size:40px; font-weight:900; color:var(--ink); line-height:1.1; margin-bottom:16px;">H2 · 40px · Sections</div>
+      <div style="font-family:'Outfit',sans-serif; font-size:24px; font-weight:700; color:var(--ink); margin-bottom:12px;">H3 · 24px · Sous-sections</div>
+      <div style="font-family:'Outfit',sans-serif; font-size:17px; color:var(--ink-m); line-height:1.7; margin-bottom:10px;">Body · 17px · Descriptions et textes longs, lisibles et confortables.</div>
+      <div style="font-family:'Outfit',sans-serif; font-size:14px; color:var(--ink-l);">Caption · 14px · Labels, métadonnées, informations secondaires.</div>
+    </div>
+  </div>
+</section>
+
+<!-- UX PRINCIPLES -->
+<section id="ux">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Principes UX</div>
+    <h2 class="sec-title reveal">L'expérience utilisateur<br/><em>avant tout.</em></h2>
+    <p class="sec-sub reveal">Chaque décision d'interface répond à un principe UX concret. Voici les 6 piliers qui guident le design de Taghazout v2.</p>
+
+    <div class="ux-grid">
+      <div class="ux-card reveal">
+        <div class="ux-icon">⚡</div>
+        <div class="ux-content">
+          <div class="ux-title">Zéro Friction</div>
+          <div class="ux-desc">Le parcours de réservation est réduit au minimum. Chaque étape inutile a été supprimée. L'utilisateur passe de "découverte" à "paiement confirmé" en un maximum de 4 clics. Les formulaires sont courts, clairs, avec validation instantanée.</div>
+          <div class="ux-impact">↑ Taux de conversion</div>
+        </div>
+      </div>
+      <div class="ux-card reveal" style="animation-delay:.06s">
+        <div class="ux-icon">📱</div>
+        <div class="ux-content">
+          <div class="ux-title">Mobile-First</div>
+          <div class="ux-desc">80% des touristes réservent depuis leur smartphone. La maquette a été conçue en partant du mobile, puis adaptée pour tablette et desktop. Chaque bouton fait minimum 44px de hauteur — la taille minimale recommandée par Apple pour le toucher.</div>
+          <div class="ux-impact">↑ Accessibilité mobile</div>
+        </div>
+      </div>
+      <div class="ux-card reveal" style="animation-delay:.12s">
+        <div class="ux-icon">👁️</div>
+        <div class="ux-content">
+          <div class="ux-title">Hiérarchie Visuelle Claire</div>
+          <div class="ux-desc">L'œil suit naturellement un chemin : titre → image → prix → CTA. La taille, le poids et la couleur des éléments guident ce parcours sans effort conscient. Le bleu attire immédiatement sur les actions importantes.</div>
+          <div class="ux-impact">↑ Compréhension instantanée</div>
+        </div>
+      </div>
+      <div class="ux-card reveal" style="animation-delay:.18s">
+        <div class="ux-icon">🌙</div>
+        <div class="ux-content">
+          <div class="ux-title">Dark Mode Intégré</div>
+          <div class="ux-desc">Pas un after-thought, mais une décision de design dès le départ. Le mode sombre réduit la fatigue oculaire lors d'une navigation nocturne et améliore l'expérience sur les écrans OLED. La palette bleue nocturne a été testée séparément.</div>
+          <div class="ux-impact">↑ Confort utilisateur</div>
+        </div>
+      </div>
+      <div class="ux-card reveal" style="animation-delay:.24s">
+        <div class="ux-icon">🔔</div>
+        <div class="ux-content">
+          <div class="ux-title">Feedback Temps Réel</div>
+          <div class="ux-desc">Chaque action de l'utilisateur reçoit un retour immédiat : confirmation de réservation, statut du paiement, points de fidélité gagnés. L'incertitude est l'ennemi numéro un de l'UX — chaque état du système est communiqué clairement.</div>
+          <div class="ux-impact">↑ Confiance utilisateur</div>
+        </div>
+      </div>
+      <div class="ux-card reveal" style="animation-delay:.3s">
+        <div class="ux-icon">♿</div>
+        <div class="ux-content">
+          <div class="ux-title">Accessibilité WCAG</div>
+          <div class="ux-desc">Les contrastes bleu/blanc respectent le ratio WCAG AA (4.5:1 minimum). Les boutons ont des états focus visibles. Les images ont des alt texts. La typographie est lisible dès 14px. Le design inclut tout le monde.</div>
+          <div class="ux-impact">↑ Inclusion universelle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPOSANTS -->
+<section id="composants" style="background:white;">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Composants UI</div>
+    <h2 class="sec-title reveal">Un système de composants<br/><em>cohérent.</em></h2>
+    <p class="sec-sub reveal">Chaque composant suit les mêmes règles de design — border-radius, shadows, spacing. La cohérence crée la confiance.</p>
+
+    <div class="comp-grid">
+
+      <div class="comp-card reveal">
+        <div class="comp-preview">
+          <div class="mock-nav">
+            <div class="mock-logo"></div>
+            <div class="mock-links">
+              <div class="mock-link act"></div>
+              <div class="mock-link"></div>
+              <div class="mock-link"></div>
+            </div>
+            <div class="mock-btn-sm">Réserver</div>
+          </div>
+        </div>
+        <div class="comp-info">
+          <div class="comp-name">🧭 Navigation Bar</div>
+          <div class="comp-desc">Logo à gauche, liens au centre, CTA primaire à droite. La hiérarchie guide vers l'action. En mobile, elle se collapse en hamburger. Background semi-transparent avec blur pour garder le contexte.</div>
+        </div>
+      </div>
+
+      <div class="comp-card reveal" style="animation-delay:.08s">
+        <div class="comp-preview">
+          <div class="mock-card-hotel" style="width:200px">
+            <div class="mock-img"></div>
+            <div class="mock-card-body">
+              <div class="mock-card-title"></div>
+              <div class="mock-card-sub"></div>
+              <div class="mock-card-row">
+                <div class="mock-price">250 DH/nuit</div>
+                <div class="mock-stars">⭐⭐⭐⭐</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="comp-info">
+          <div class="comp-name">🏨 Carte de Service</div>
+          <div class="comp-desc">Structure image → titre → sous-titre → prix + note. Le ratio image/texte valorise visuellement l'offre. Border-radius 16px pour un look moderne. Shadow subtile pour la profondeur.</div>
+        </div>
+      </div>
+
+      <div class="comp-card reveal" style="animation-delay:.16s">
+        <div class="comp-preview">
+          <div class="mock-form" style="width:200px">
+            <div class="mock-input active">📅 Date d'arrivée</div>
+            <div class="mock-input">👥 Nombre de personnes</div>
+            <div class="mock-submit">Rechercher →</div>
+          </div>
+        </div>
+        <div class="comp-info">
+          <div class="comp-name">📋 Formulaire de Recherche</div>
+          <div class="comp-desc">Inputs minimalistes avec icônes contextuelles. L'état actif (bleu) montre clairement où l'utilisateur est. Le bouton CTA pleine largeur maximise les conversions.</div>
+        </div>
+      </div>
+
+      <div class="comp-card reveal" style="animation-delay:.04s">
+        <div class="comp-preview" style="background:#f8fafe">
+          <div class="mock-dash" style="width:220px">
+            <div class="mock-dash-header">
+              <div class="mock-stat"><div class="mock-stat-n">142</div><div class="mock-stat-l">Réservations</div></div>
+              <div class="mock-stat"><div class="mock-stat-n">38K</div><div class="mock-stat-l">Revenus</div></div>
+              <div class="mock-stat"><div class="mock-stat-n">4.8</div><div class="mock-stat-l">Note moy.</div></div>
+            </div>
+            <div class="mock-chart">
+              <div class="mock-bar" style="height:30%"></div>
+              <div class="mock-bar" style="height:55%"></div>
+              <div class="mock-bar" style="height:40%"></div>
+              <div class="mock-bar" style="height:80%"></div>
+              <div class="mock-bar" style="height:65%"></div>
+              <div class="mock-bar" style="height:90%"></div>
+              <div class="mock-bar" style="height:70%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="comp-info">
+          <div class="comp-name">📊 Dashboard Admin</div>
+          <div class="comp-desc">KPIs en premier plan, graphique Chart.js en support. Le bleu unifie les données sans surcharger. Layout en grid pour un scan rapide des métriques clés.</div>
+        </div>
+      </div>
+
+      <div class="comp-card reveal" style="animation-delay:.12s">
+        <div class="comp-preview">
+          <div class="mock-msg" style="width:200px">
+            <div class="mock-bubble them">Bonjour, ma réservation est confirmée ?</div>
+            <div class="mock-bubble me">Oui ✅ Vous recevrez un email.</div>
+            <div class="mock-bubble them">Merci beaucoup !</div>
+          </div>
+        </div>
+        <div class="comp-info">
+          <div class="comp-name">💬 Messagerie Interne</div>
+          <div class="comp-desc">Bulles différenciées par couleur : bleu pour l'envoyé, blanc pour le reçu. Convention universelle qui rend l'interface immédiatement compréhensible sans explication.</div>
+        </div>
+      </div>
+
+      <div class="comp-card reveal" style="animation-delay:.2s">
+        <div class="comp-preview" style="background:#1a2a40">
+          <div class="mock-dark" style="width:200px">
+            <div class="mock-dark-row">
+              <div class="mock-dark-logo"></div>
+              <div style="font-size:10px;color:rgba(255,255,255,.4)">Dark Mode</div>
+              <div class="mock-dark-toggle"></div>
+            </div>
+            <div class="mock-dark-lines">
+              <div class="mock-dark-line"></div>
+              <div class="mock-dark-line"></div>
+              <div class="mock-dark-line"></div>
+            </div>
+            <div class="mock-dark-btn"></div>
+          </div>
+        </div>
+        <div class="comp-info">
+          <div class="comp-name">🌙 Dark Mode</div>
+          <div class="comp-desc">Fond bleu nuit #0D1C35 au lieu d'un noir pur — cohérence avec la palette. Les éléments actifs restent en bleu vif pour maintenir la hiérarchie. Toggle accessible en un clic.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESPONSIVE -->
+<section id="responsive">
+  <div class="wrap">
+    <div class="resp-grid">
+      <div class="resp-info reveal">
+        <div class="sec-eyebrow" style="margin-bottom:16px">Responsive Design</div>
+        <h3>Conçu pour<br/><em>tous les écrans.</em></h3>
+        <div class="resp-list" style="margin-top:28px">
+          <div class="resp-item">
+            <div class="resp-dot"></div>
+            <div class="resp-text"><strong>Mobile-First :</strong> L'interface est d'abord pensée pour smartphone (320–768px) puis étendue au desktop.</div>
+          </div>
+          <div class="resp-item">
+            <div class="resp-dot"></div>
+            <div class="resp-text"><strong>Breakpoints :</strong> 3 points clés — 768px (tablette), 1024px (desktop), 1440px (large).</div>
+          </div>
+          <div class="resp-item">
+            <div class="resp-dot"></div>
+            <div class="resp-text"><strong>Grilles flexibles :</strong> CSS Grid + Flexbox. Les cartes passent de 1 colonne (mobile) à 3 colonnes (desktop).</div>
+          </div>
+          <div class="resp-item">
+            <div class="resp-dot"></div>
+            <div class="resp-text"><strong>Tailles tactiles :</strong> Tous les éléments interactifs font minimum 44×44px pour le toucher.</div>
+          </div>
+          <div class="resp-item">
+            <div class="resp-dot"></div>
+            <div class="resp-text"><strong>Images adaptatives :</strong> Srcset pour charger la bonne résolution selon l'écran — performance optimale.</div>
+          </div>
+        </div>
+      </div>
+      <div class="resp-devices reveal" style="animation-delay:.15s">
+        <div class="resp-desktop">
+          <div class="resp-screen">
+            <div class="resp-bar" style="width:90%;height:8px;opacity:.6"></div>
+            <div class="resp-bar"></div>
+            <div class="resp-bar"></div>
+            <div class="resp-bar"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-top:4px">
+              <div style="height:30px;background:var(--blue);border-radius:4px;opacity:.3"></div>
+              <div style="height:30px;background:var(--blue);border-radius:4px;opacity:.3"></div>
+              <div style="height:30px;background:var(--blue);border-radius:4px;opacity:.3"></div>
+            </div>
+          </div>
+        </div>
+        <div class="resp-tablet">
+          <div class="resp-screen">
+            <div class="resp-bar" style="width:90%;height:6px;opacity:.6"></div>
+            <div class="resp-bar"></div>
+            <div class="resp-bar"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:4px">
+              <div style="height:24px;background:var(--blue);border-radius:4px;opacity:.3"></div>
+              <div style="height:24px;background:var(--blue);border-radius:4px;opacity:.3"></div>
+            </div>
+          </div>
+        </div>
+        <div class="resp-mobile">
+          <div class="resp-screen">
+            <div class="resp-bar" style="width:90%;height:5px;opacity:.6"></div>
+            <div class="resp-bar"></div>
+            <div class="resp-bar"></div>
+            <div style="height:20px;background:var(--blue);border-radius:4px;opacity:.3;margin-top:4px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BASE DE DONNÉES -->
+<section id="bdd" style="background:white;">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Architecture des données</div>
+    <h2 class="sec-title reveal">Une base pensée pour<br/><em>évoluer.</em></h2>
+    <p class="sec-sub reveal">Le MCD et MLD de Taghazout v2 reflètent une architecture normalisée, pensée pour la flexibilité et la performance.</p>
+
+    <div class="db-layout">
+      <div class="db-img-wrap reveal">
+        <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-l);margin-bottom:12px;padding:0 8px">MCD — Modèle Conceptuel</div>
+        <img src="https://raw.githubusercontent.com/zakariyaaaaaa/Taghazout_v2/main/Conception%20de%20la%20base%20de%20donn%C3%A9es/MCD.png" alt="MCD Taghazout v2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div style="display:none;height:200px;align-items:center;justify-content:center;background:var(--bg);border-radius:12px;color:var(--ink-l);font-size:14px;">📊 MCD.png</div>
+      </div>
+      <div class="reveal" style="animation-delay:.12s">
+        <div class="db-desc">
+          <h3>17 tables.<br/><em>Une logique claire.</em></h3>
+          <p>Chaque table a une responsabilité unique (principe Single Responsibility). Les relations sont normalisées en 3NF pour éviter la redondance. Les clés étrangères garantissent l'intégrité des données.</p>
+          <p>La table <strong>RESERVATION</strong> est polymorphique — elle gère hôtels, surf, activités et restaurants avec un seul modèle grâce aux champs <code>type</code> et <code>reference_id</code>. Élégant et évolutif.</p>
+        </div>
+        <div class="db-stats">
+          <div class="db-stat">
+            <div class="db-stat-n">17</div>
+            <div class="db-stat-l">Tables</div>
+          </div>
+          <div class="db-stat">
+            <div class="db-stat-n">4</div>
+            <div class="db-stat-l">Services</div>
+          </div>
+          <div class="db-stat">
+            <div class="db-stat-n">3NF</div>
+            <div class="db-stat-l">Normalisation</div>
+          </div>
+          <div class="db-stat">
+            <div class="db-stat-n">∞</div>
+            <div class="db-stat-l">Évolutivité</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIGMA CTA -->
+<section>
+  <div class="wrap">
+    <div class="figma-banner reveal">
+      <div class="figma-text">
+        <div class="figma-eyebrow">Maquette interactive</div>
+        <h2 class="figma-title">Voir le design<br/><em>en action.</em></h2>
+        <p class="figma-desc">La maquette Figma complète est disponible avec tous les écrans, états, interactions et annotations de design. Navigable comme la vraie application.</p>
+      </div>
+      <div class="figma-cta">
+        <a href="https://www.figma.com/design/THQNT1UjzYcQwSPuRWNjWV/Untitled?node-id=0-1&m=dev&t=EnvAdKtgUx68xXrL-1" class="figma-btn" target="_blank">
+          <span class="figma-btn-icon">🎨</span>
+          Ouvrir dans Figma
+        </a>
+        <div style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.5);text-align:center">
+          Prototype interactif · Mode dev activé
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="ft-brand">Taghazout v2</div>
+    <div class="ft-sub">Design System · Présentation des choix visuels</div>
+  </div>
+  <div class="ft-right">
+    Par <a href="https://github.com/zakariyaaaaaa" target="_blank">Zakariya</a> · Maroc 🇲🇦<br/>
+    Full Stack PHP / MariaDB
+  </div>
+</footer>
+
+<script>
+// Cursor
+const cur = document.getElementById('cur');
+const ring = document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function anim(){
+  cur.style.cssText=`left:${mx}px;top:${my}px`;
+  rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+  ring.style.cssText=`left:${rx}px;top:${ry}px`;
+  requestAnimationFrame(anim);
+})();
+
+// Scroll reveal
+const obs = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting) e.target.classList.add('in');
+}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

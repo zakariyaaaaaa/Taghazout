@@ -155,7 +155,7 @@ $level_labels = [
         <div class="hotel-card">
             <div class="card-img">
                 <img
-                    src="../assets/images/surf/<?= htmlspecialchars($course['image'] ?? '') ?>"
+                    src="../uploads/surf/<?= htmlspecialchars($course['image'] ?? '') ?>"
                     onerror="this.src='../assets/images/default.jpg'"
                     alt="<?= htmlspecialchars($course['title']) ?>"
                     loading="lazy"

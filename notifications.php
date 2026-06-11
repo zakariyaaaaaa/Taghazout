@@ -232,11 +232,13 @@ $total        = count($notifications);
     </style>
 </head>
 <body>
-
 <?php require_once 'includes/navbar.php'; ?>
 
 <!-- PAGE HERO -->
 <section class="page-hero">
+                <video autoplay muted loop playsinline class="hero-video">
+                    <source src="../assets/videos/notifications.mp4" type="video/mp4">
+                </video>
     <div class="page-hero-bg"></div>
     <div class="page-hero-content">
         <p class="eyebrow">🔔 Taghazout Platform</p>
@@ -321,54 +323,5 @@ $total        = count($notifications);
 
 <?php require_once 'includes/footer.php'; ?>
 <script src="../assets/js/main.js"></script>
-<script>
-// ── Delete one notification ───────────────────────────────────
-async function deleteNotif(id) {
-    try {
-        const res  = await fetch('/taghazout_platform/api/notifications.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify({ action: 'delete', id })
-        });
-        const data = await res.json();
-        if (data.success) {
-            const card = document.getElementById('notif-' + id);
-            if (card) {
-                card.style.transition = 'opacity .3s, transform .3s, max-height .3s';
-                card.style.opacity = '0';
-                card.style.transform = 'translateX(30px)';
-                card.style.maxHeight = '0';
-                card.style.overflow  = 'hidden';
-                card.style.padding   = '0';
-                card.style.margin    = '0';
-                setTimeout(() => card.remove(), 320);
-            }
-        }
-    } catch(e) { console.error(e); }
-}
-
-// ── Delete all notifications ──────────────────────────────────
-async function clearAll() {
-    if (!confirm('Supprimer toutes les notifications ?')) return;
-    try {
-        const res  = await fetch('/taghazout_platform/api/notifications.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify({ action: 'delete_all' })
-        });
-        const data = await res.json();
-        if (data.success) {
-            document.getElementById('notif-list').innerHTML = `
-                <div class="notif-empty">
-                    <span class="emoji">🔔</span>
-                    <h3>Aucune notification</h3>
-                    <p>Vous êtes à jour !</p>
-                </div>`;
-        }
-    } catch(e) { console.error(e); }
-}
-</script>
 </body>
 </html>
