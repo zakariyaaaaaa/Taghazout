@@ -1,401 +1,332 @@
-# 🚀 5 مشاريع PHP كاملة — مستوى متقدم
+<div align="center">
 
-> كل مشروع فيه: الفكرة، الـ Features، قاعدة البيانات، الـ Tech Stack، وتقدير الوقت
+<img src="https://readme-typing-svg.demolab.com?font=Playfair+Display&size=40&duration=3000&pause=1000&color=1E6FD9&center=true&vCenter=true&width=700&lines=🌊+Taghazout+Platform;Morocco's+Surf+Capital+%F0%9F%87%B2%F0%9F%87%A6;Book+%7C+Explore+%7C+Experience" alt="Taghazout Platform" />
+
+<br/>
+
+![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Stripe](https://img.shields.io/badge/Stripe-008CDD?style=for-the-badge&logo=stripe&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![XAMPP](https://img.shields.io/badge/XAMPP-FB7A24?style=for-the-badge&logo=xampp&logoColor=white)
+![Composer](https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=composer&logoColor=white)
+
+<br/>
+
+> 🏄 **A full-stack tourism & lifestyle platform for Taghazout Bay**  
+> Morocco's world-famous surf village — Book hotels, discover restaurants, join surf courses & earn loyalty points.
+
+<br/>
+
+![visitors](https://visitor-badge.laobi.icu/badge?page_id=zakariyaaaaaa.Taghazout)
+[![GitHub stars](https://img.shields.io/github/stars/zakariyaaaaaa/Taghazout?style=social)](https://github.com/zakariyaaaaaa/Taghazout/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/zakariyaaaaaa/Taghazout?style=social)](https://github.com/zakariyaaaaaa/Taghazout/network)
+
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=1E6FD9&height=120&section=header" width="100%"/>
 
 ---
 
+## 📋 Table of Contents
+
+- [✨ Features](#-features)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [🚀 Installation](#-installation)
+- [⚙️ Configuration](#️-configuration)
+- [📁 Project Structure](#-project-structure)
+- [🗄️ Database](#️-database)
+- [💳 Stripe Payments](#-stripe-payments)
+- [🔐 Security](#-security)
+- [📍 About Taghazout](#-about-taghazout)
+
 ---
-
-# 🏥 1. ClinicFlow — نظام إدارة عيادة طبية
-
-## 💡 الفكرة
-منصة متكاملة لإدارة عيادة طبية — من حجز المواعيد وحتى الوصفات الطبية والدفع. ثلاثة أدوار مختلفة: طبيب، مريض، مسؤول.
 
 ## ✨ Features
 
-### 👤 للمريض
-- تسجيل حساب + تحميل وثائق طبية (PDF/صور)
-- حجز موعد مع اختيار الطبيب، التاريخ، والوقت
-- عرض سجل المواعيد والوصفات
-- دفع الكشوفات عبر Stripe
-- إشعارات (تأكيد موعد، تذكير قبل 24h)
-- Chat مع الطبيب (messaging system)
+<table>
+<tr>
+<td width="50%">
 
-### 🩺 للطبيب
-- لوحة تحكم مع جدول المواعيد اليومي (Calendar view)
-- قبول/رفض المواعيد مع سبب
-- كتابة وصفة طبية رقمية قابلة للطباعة (PDF)
-- عرض ملف المريض الكامل (تاريخ + وثائق)
-- إدارة أوقات العمل (availability schedule)
-- إحصائيات: عدد المرضى، أكثر الأمراض...
+### 🏄 Surf Courses
+Browse and book surf lessons with certified local instructors. View schedules, difficulty levels, and instructor profiles.
 
-### 🔧 للمسؤول (Admin)
-- إضافة/حذف أطباء ومرضى
-- إدارة التخصصات والأقسام
-- تقارير مالية (إيرادات يومية/شهرية)
-- سجل كامل لكل العمليات (audit log)
+### 🏨 Hotel Booking
+Discover and reserve the best accommodations in Taghazout Bay — from surf camps to boutique riads.
 
-## 🗄️ قاعدة البيانات
+### 🍽️ Restaurants
+Explore handpicked dining spots — from fresh seafood to traditional tagine and beachside cafés.
 
-```sql
-users (id, name, email, password, role, phone, avatar, created_at)
-doctors (id, user_id, specialty, bio, price_per_consultation, rating)
-patients (id, user_id, date_of_birth, blood_type, allergies)
-appointments (id, doctor_id, patient_id, date, time, status, reason, notes)
-prescriptions (id, appointment_id, doctor_id, patient_id, medications, instructions, pdf_path, created_at)
-medical_documents (id, patient_id, title, file_path, type, uploaded_at)
-payments (id, appointment_id, amount, stripe_payment_id, status, paid_at)
-messages (id, sender_id, receiver_id, content, is_read, sent_at)
-notifications (id, user_id, title, body, is_read, type, created_at)
-doctor_availability (id, doctor_id, day_of_week, start_time, end_time, is_active)
-reviews (id, doctor_id, patient_id, rating, comment, created_at)
-```
+### 🖼️ Gallery
+A stunning visual journey through Taghazout's waves, landscapes, and vibrant culture.
+
+</td>
+<td width="50%">
+
+### 🎁 Loyalty Points System
+Earn points with every booking and activity. Redeem them for discounts, free nights, and exclusive rewards.
+
+### 💳 Secure Payments
+100% secure online payments powered by **Stripe** — supports cards and major payment methods.
+
+### 🔔 Smart Notifications
+Real-time alerts for booking confirmations, loyalty rewards, and platform updates.
+
+### ❤️ Favorites
+Save and revisit your favorite hotels, restaurants, surf spots, and activities.
+
+</td>
+</tr>
+</table>
+
+---
 
 ## 🛠️ Tech Stack
-- **Backend**: PHP 8+ (OOP + MVC pattern)
-- **Database**: MySQL 8
-- **Frontend**: HTML5 + CSS3 + JS + Chart.js (للإحصائيات)
-- **Payments**: Stripe API
-- **PDF**: TCPDF أو DomPDF (وصفات + فواتير)
-- **Server**: XAMPP / Apache
-- **Extra**: PHPMailer (إشعارات email)
 
-## ⏱️ تقدير الوقت
-| Phase | المدة |
-|---|---|
-| Setup + Auth system | 1 أسبوع |
-| Patient module | 2 أسبوع |
-| Doctor module | 2 أسبوع |
-| Admin + Reports | 1 أسبوع |
-| Payments + PDF | 1 أسبوع |
-| Testing + Deploy | 1 أسبوع |
-| **المجموع** | **~8 أسابيع** |
+<div align="center">
 
-## 🔥 ليش هو impressive فالـ CV؟
-HealthTech = domain صعب ومطلوب. Role-based system + PDF generation + real-time notifications = مهارات advanced بينة.
+| Layer | Technology | Details |
+|:---:|:---:|:---:|
+| 🖥️ **Backend** | PHP 8.0+ | Vanilla PHP, no framework |
+| 🗄️ **Database** | MySQL 8.0+ | Relational DB via phpMyAdmin |
+| 🎨 **Frontend** | HTML5 + CSS3 + JS | Custom design system |
+| 💳 **Payments** | Stripe API | stripe-php v20 via Composer |
+| 📦 **Dependencies** | Composer | Autoload + Stripe SDK |
+| 🌐 **Server** | Apache / XAMPP | Local & production ready |
+| 🔤 **Fonts** | Google Fonts | Playfair Display + Outfit |
+
+</div>
 
 ---
 
----
+## 🚀 Installation
 
-# 🏠 2. DarMa — منصة إيجار شقق مغربية
+### ✅ Prerequisites
 
-## 💡 الفكرة
-Airbnb ولكن للسوق المغربي — إيجار يومي/شهري للشقق والرياضات والفيلات. بائع + مستأجر + admin.
+Make sure you have the following installed:
 
-## ✨ Features
-
-### 👤 للمستأجر
-- بحث متقدم (مدينة، تاريخ، سعر، نوع، عدد غرف)
-- خريطة تفاعلية (Google Maps API)
-- حجز مع تأكيد فوري أو طلب موافقة
-- دفع عبر Stripe + إيصال PDF
-- نظام تقييم ومراجعة بعد الإقامة
-- Favorites + مقارنة بين عقارين
-- Chat مع صاحب العقار
-
-### 🏠 لصاحب العقار (Host)
-- إضافة عقار مع صور متعددة (drag & drop upload)
-- تقويم الإتاحة (availability calendar)
-- قبول/رفض الحجوزات
-- إحصائيات: أرباح، تقييمات، عدد الزوار
-- سياسة الإلغاء (مرنة / صارمة)
-- Payout نظام (سحب الأرباح)
-
-### 🔧 Admin
-- موافقة على العقارات الجديدة (verification system)
-- إدارة النزاعات بين المستأجر والمالك
-- كومسيون على كل حجز (configurable %)
-- تقارير مالية + خريطة حرارية للمناطق الأكثر طلبًا
-
-## 🗄️ قاعدة البيانات
-
-```sql
-users (id, name, email, password, role, phone, avatar, verified, created_at)
-properties (id, host_id, title, description, type, city, address, lat, lng, price_per_night, max_guests, status)
-property_images (id, property_id, image_path, is_primary)
-property_amenities (id, property_id, amenity) -- wifi, pool, parking...
-bookings (id, property_id, guest_id, check_in, check_out, guests_count, total_price, status, created_at)
-payments (id, booking_id, amount, commission, host_payout, stripe_id, status, paid_at)
-reviews (id, booking_id, property_id, reviewer_id, rating, comment, host_reply, created_at)
-availability (id, property_id, date, is_blocked)
-messages (id, booking_id, sender_id, content, sent_at)
-favorites (id, user_id, property_id, saved_at)
-payouts (id, host_id, amount, status, processed_at)
-```
-
-## 🛠️ Tech Stack
-- **Backend**: PHP 8+ MVC
-- **Database**: MySQL
-- **Frontend**: HTML + CSS + Vanilla JS + Leaflet.js (خرائط مجانية)
-- **Payments**: Stripe (Connect للـ payouts)
-- **Images**: Cloudinary API أو local storage
-- **Extra**: Google Maps / OpenStreetMap
-
-## ⏱️ تقدير الوقت
-| Phase | المدة |
-|---|---|
-| Auth + Property CRUD | 1.5 أسبوع |
-| Search + Map integration | 1.5 أسبوع |
-| Booking system + Calendar | 2 أسبوع |
-| Payments + Payouts | 1.5 أسبوع |
-| Reviews + Chat | 1 أسبوع |
-| Admin + Deploy | 1 أسبوع |
-| **المجموع** | **~8.5 أسابيع** |
-
-## 🔥 ليش هو impressive فالـ CV؟
-Marketplace بنظام commission + multi-role + خرائط تفاعلية = من أصعب أنواع الـ web apps.
+- **PHP** >= 8.0
+- **MySQL** >= 8.0
+- **Composer** — [getcomposer.org](https://getcomposer.org)
+- **XAMPP** — [apachefriends.org](https://www.apachefriends.org)
+- **Git** — [git-scm.com](https://git-scm.com)
 
 ---
 
----
+### 📦 Step-by-Step Setup
 
-# 🎓 3. MadrasaTech — منصة تعليمية
+#### 1️⃣ Clone the repository
 
-## 💡 الفكرة
-منصة كورسات أونلاين بالدارجة/العربية — أستاذ يرفع كورسات، طالب يشري ويتعلم، نظام تقدم وشهادات. بحال Udemy ولكن ديالك.
+\`\`\`bash
+git clone https://github.com/zakariyaaaaaa/Taghazout.git
+cd Taghazout
+\`\`\`
 
-## ✨ Features
+#### 2️⃣ Install PHP dependencies (Stripe + Composer autoload)
 
-### 👤 للطالب
-- تصفح كورسات بالفئة / البحث / التقييم
-- شراء كورس عبر Stripe أو نقاط
-- مشاهدة فيديوهات (YouTube embed أو upload)
-- تقدم مرئي (progress bar بالـ %)
-- اختبارات (quiz) بعد كل درس
-- شهادة PDF عند الإكمال مع QR Code للتحقق
-- Bookmarks + ملاحظات شخصية داخل الكورس
-- Q&A section لكل درس
+\`\`\`bash
+composer install
+\`\`\`
 
-### 👨‍🏫 للأستاذ
-- لوحة إنشاء كورس (sections + lessons drag & drop)
-- رفع فيديوهات أو ربط YouTube
-- إنشاء اختبارات (quiz builder)
-- إحصائيات: عدد الطلاب، الدروس الأكثر مشاهدة، ratings
-- أرباح + طلب سحب
+> This will install **stripe/stripe-php** and generate the `vendor/autoload.php` file.
 
-### 🔧 Admin
-- موافقة على الكورسات قبل النشر
-- إدارة الفئات والعلامات
-- نسبة الكومسيون
-- تقارير + إحصائيات عامة
+#### 3️⃣ Configure the project
 
-## 🗄️ قاعدة البيانات
+\`\`\`bash
+cp includes/config.example.php includes/config.php
+\`\`\`
 
-```sql
-users (id, name, email, password, role, bio, avatar, created_at)
-courses (id, instructor_id, title, description, category_id, price, thumbnail, level, language, status)
-sections (id, course_id, title, position)
-lessons (id, section_id, title, video_url, duration, position, is_free_preview)
-enrollments (id, user_id, course_id, enrolled_at, completed_at)
-lesson_progress (id, enrollment_id, lesson_id, watched_at, is_completed)
-quizzes (id, lesson_id, title)
-quiz_questions (id, quiz_id, question, options JSON, correct_answer)
-quiz_attempts (id, user_id, quiz_id, score, attempted_at)
-certificates (id, user_id, course_id, certificate_code, issued_at, pdf_path)
-reviews (id, user_id, course_id, rating, comment, created_at)
-payments (id, user_id, course_id, amount, stripe_id, status, paid_at)
-bookmarks (id, user_id, lesson_id, note, created_at)
-```
+Then open `includes/config.php` and fill in your credentials (see [Configuration](#️-configuration)).
 
-## 🛠️ Tech Stack
-- **Backend**: PHP 8+ OOP
-- **Database**: MySQL
-- **Frontend**: HTML + CSS + JS + Video.js
-- **PDF**: TCPDF (شهادات مع QR Code)
-- **Payments**: Stripe
-- **Extra**: QR Code library للتحقق من الشهادات
+#### 4️⃣ Import the database
 
-## ⏱️ تقدير الوقت
-| Phase | المدة |
-|---|---|
-| Auth + Course CRUD | 1.5 أسبوع |
-| Video player + Progress | 1.5 أسبوع |
-| Quiz system | 1 أسبوع |
-| Payments + Certificates PDF | 1.5 أسبوع |
-| Instructor dashboard | 1 أسبوع |
-| Admin + Deploy | 1 أسبوع |
-| **المجموع** | **~7.5 أسابيع** |
+1. Open **phpMyAdmin** → `http://localhost/phpmyadmin`
+2. Create a new database named `taghazout`
+3. Click **Import** and select the `.sql` file from the project
 
-## 🔥 ليش هو impressive فالـ CV؟
-EdTech + PDF certificates مع QR verification + quiz engine = مشروع يبان فيه depth حقيقي.
+#### 5️⃣ Start the server
+
+1. Open **XAMPP Control Panel**
+2. Start **Apache** and **MySQL**
+3. Visit: [http://localhost/Taghazout](http://localhost/Taghazout) 🎉
 
 ---
 
----
+## ⚙️ Configuration
 
-# 🛒 4. SouqPro — متجر إلكتروني Multi-Vendor
+Create your config file from the example:
 
-## 💡 الفكرة
-منصة تجارة إلكترونية فيها عدة بائعين — كل بائع عنده متجره الخاص، والزبون يقدر يشري من متاجر مختلفة في نفس الوقت.
+\`\`\`bash
+cp includes/config.example.php includes/config.php
+\`\`\`
 
-## ✨ Features
+Edit `includes/config.php`:
 
-### 👤 للزبون
-- تصفح منتجات + فلترة (فئة، سعر، تقييم، بائع)
-- سلة تسوق من عدة متاجر
-- دفع موحد عبر Stripe (تقسيم تلقائي للبائعين)
-- تتبع الطلب (pending → processing → shipped → delivered)
-- مراجعات + تقييمات المنتجات
-- كود خصم / كوبون
-- Wishlist + مقارنة منتجات
-- سجل الطلبات + إعادة الطلب
+\`\`\`php
+<?php
+// ─── Database ───────────────────────────────
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');         // your MySQL username
+define('DB_PASS', '');             // your MySQL password
+define('DB_NAME', 'taghazout');    // your database name
 
-### 🏪 للبائع
-- لوحة تحكم: إدارة المنتجات، المخزون، الطلبات
-- رفع صور متعددة للمنتج
-- إدارة المخزون مع تنبيه عند النفاد
-- إحصائيات مبيعات مع Chart.js
-- إدارة الشحن (تحديد مناطق التوصيل والأسعار)
-- سحب الأرباح (بعد خصم الكومسيون)
+// ─── Stripe Payments ────────────────────────
+define('STRIPE_SECRET_KEY', 'sk_test_...');   // from stripe.com dashboard
+define('STRIPE_PUBLIC_KEY', 'pk_test_...');   // from stripe.com dashboard
 
-### 🔧 Admin
-- موافقة على البائعين الجدد
-- إدارة الفئات والعلامات التجارية
-- ضبط الكومسيون لكل بائع
-- إدارة الكوبونات
-- تقارير مالية شاملة
+// ─── App ────────────────────────────────────
+define('BASE_URL', 'http://localhost/Taghazout');
+\`\`\`
 
-## 🗄️ قاعدة البيانات
-
-```sql
-users (id, name, email, password, role, phone, address, created_at)
-shops (id, vendor_id, name, description, logo, banner, status, commission_rate)
-products (id, shop_id, category_id, name, description, price, sale_price, stock, sku)
-product_images (id, product_id, image_path, is_primary)
-product_variants (id, product_id, size, color, price, stock)
-orders (id, customer_id, total_amount, discount, shipping_cost, status, address, created_at)
-order_items (id, order_id, product_id, shop_id, quantity, price, status)
-payments (id, order_id, amount, stripe_id, status, paid_at)
-vendor_payouts (id, shop_id, amount, commission_deducted, status, processed_at)
-reviews (id, user_id, product_id, rating, comment, images JSON, created_at)
-coupons (id, code, type, value, min_order, uses_limit, uses_count, expires_at)
-wishlist (id, user_id, product_id, added_at)
-shipping_zones (id, shop_id, zone_name, price, estimated_days)
-categories (id, parent_id, name, slug, icon)
-```
-
-## 🛠️ Tech Stack
-- **Backend**: PHP 8+ MVC
-- **Database**: MySQL
-- **Frontend**: HTML + CSS + JS + Chart.js
-- **Payments**: Stripe Connect (split payments)
-- **Images**: Local storage مع resize تلقائي (GD Library)
-- **Extra**: Composer packages
-
-## ⏱️ تقدير الوقت
-| Phase | المدة |
-|---|---|
-| Auth + Shop setup | 1 أسبوع |
-| Product + Category CRUD | 1.5 أسبوع |
-| Cart + Order system | 2 أسبوع |
-| Payments + Payouts | 1.5 أسبوع |
-| Vendor dashboard + Stats | 1 أسبوع |
-| Admin + Coupons + Deploy | 1.5 أسبوع |
-| **المجموع** | **~8.5 أسابيع** |
-
-## 🔥 ليش هو impressive فالـ CV؟
-Multi-vendor + split payments + inventory management = من أعقد أنواع الـ e-commerce. نادر من يبنيه من scratch.
+> ⚠️ **Never push `config.php` to GitHub** — it contains sensitive credentials.  
+> It is already listed in `.gitignore` ✅
 
 ---
 
----
+## 📁 Project Structure
 
-# 🍕 5. Tabel — منصة طلب أكل محلية
-
-## 💡 الفكرة
-منصة طلب أكل من مطاعم محلية — زبون يطلب، مطعم يستقبل ويجهز، ساعي يوصل. ثلاثة أدوار + real-time tracking.
-
-## ✨ Features
-
-### 👤 للزبون
-- تصفح مطاعم قريبة (GPS أو اختيار المدينة)
-- قائمة الطعام مع صور وتفاصيل
-- سلة + تخصيص الطلب (بدون بصل، إضافة جبن...)
-- دفع أونلاين (Stripe) أو عند الاستلام
-- تتبع الطلب real-time (بدون WebSocket — polling كل 10 ثواني)
-- تقييم المطعم والساعي بعد التوصيل
-- طلبات سابقة + إعادة الطلب بنقرة
-
-### 🍽️ للمطعم
-- Dashboard يستقبل الطلبات الجديدة (auto-refresh)
-- تغيير حالة الطلب: مقبول ← يُحضَّر ← جاهز ← مع الساعي
-- إدارة القائمة (منتجات، أسعار، إتاحة)
-- إدارة ساعات العمل وحالة المطعم (مفتوح/مغلق)
-- إحصائيات: أكثر الأطباق طلبًا، أوقات الذروة
-
-### 🛵 للساعي
-- لوحة بسيطة: الطلبات الجاهزة للتوصيل في منطقته
-- قبول طلب + تحديث الحالة (غادي ← وصلت ← تم التوصيل)
-- سجل التوصيلات + الأرباح اليومية
-
-### 🔧 Admin
-- موافقة على المطاعم والسعاة
-- إدارة المناطق والمدن
-- تقارير + كومسيون
-
-## 🗄️ قاعدة البيانات
-
-```sql
-users (id, name, email, password, role, phone, avatar, created_at)
-restaurants (id, owner_id, name, description, logo, address, city, lat, lng, phone, category, status, is_open)
-menu_categories (id, restaurant_id, name, position)
-menu_items (id, restaurant_id, category_id, name, description, price, image, is_available)
-item_options (id, item_id, name, choices JSON, is_required) -- مثل: الحجم، الإضافات
-orders (id, customer_id, restaurant_id, driver_id, total, delivery_fee, status, address, notes, created_at)
-order_items (id, order_id, item_id, quantity, price, customizations JSON)
-payments (id, order_id, amount, method, stripe_id, status, paid_at)
-drivers (id, user_id, vehicle_type, zone, is_available, total_earnings)
-reviews (id, order_id, customer_id, restaurant_rating, driver_rating, comment, created_at)
-zones (id, name, city, delivery_fee, estimated_minutes)
-```
-
-## 🛠️ Tech Stack
-- **Backend**: PHP 8+ MVC
-- **Database**: MySQL
-- **Frontend**: HTML + CSS + JS (AJAX polling للـ real-time)
-- **Maps**: Leaflet.js أو Google Maps
-- **Payments**: Stripe
-- **Extra**: PHPMailer + SMS API (optional)
-
-## ⏱️ تقدير الوقت
-| Phase | المدة |
-|---|---|
-| Auth (3 roles) + Restaurant setup | 1.5 أسبوع |
-| Menu + Cart system | 1.5 أسبوع |
-| Order flow + Status tracking | 2 أسبوع |
-| Driver module | 1 أسبوع |
-| Payments + Reviews | 1 أسبوع |
-| Admin + Deploy | 1 أسبوع |
-| **المجموع** | **~8 أسابيع** |
-
-## 🔥 ليش هو impressive فالـ CV؟
-Food delivery = معقدة logistically (3 roles + real-time + geo). شركات بحال Glovo بنات هادشي بالملايين.
+\`\`\`
+🌊 Taghazout/
+│
+├── 📁 assets/
+│   ├── 📁 css/                 # Stylesheets & design system
+│   ├── 📁 js/                  # JavaScript files
+│   ├── 📁 images/              # Icons, photos, UI assets
+│   └── 📁 videos/              # Background videos (gitignored if large)
+│
+├── 📁 includes/
+│   ├── config.php              # ⚠️ DB & API keys (gitignored)
+│   ├── config.example.php      # Template for config
+│   ├── db.php                  # Database connection
+│   └── helpers.php             # Utility functions
+│
+├── 📁 profile/
+│   ├── profile.php             # User profile page
+│   ├── loyalty-points.php      # Points balance & history
+│   ├── loyalty-store.php       # Rewards store
+│   └── redeem-points.php       # Redeem rewards
+│
+├── 📁 payment/
+│   ├── payment-success.php     # Stripe success handler
+│   └── payment-failed.php      # Stripe failure handler
+│
+├── 📁 uploads/                 # User-uploaded files (gitignored)
+├── 📁 vendor/                  # Composer packages (gitignored)
+│
+├── 📄 index.php                # 🏠 Homepage
+├── 📄 hotels.php               # 🏨 Hotel listings
+├── 📄 hotel-details.php        # Hotel detail page
+├── 📄 restaurants.php          # 🍽️ Restaurant listings
+├── 📄 restaurant-details.php   # Restaurant detail page
+├── 📄 surf-courses.php         # 🏄 Surf course listings
+├── 📄 Surf-course-details.php  # Surf course detail page
+├── 📄 activities.php           # 🎯 Activities page
+├── 📄 activity-details.php     # Activity detail page
+├── 📄 gallery.php              # 🖼️ Photo gallery
+├── 📄 favorites.php            # ❤️ Saved favorites
+├── 📄 notifications.php        # 🔔 User notifications
+├── 📄 contact.php              # 📬 Contact page
+├── 📄 toggle_favorite.php      # AJAX favorite toggle
+│
+├── 📄 .gitignore               # Git exclusions
+├── 📄 composer.json            # Composer dependencies
+├── 📄 composer.lock            # Locked dependency versions
+└── 📄 README.md                # This file
+\`\`\`
 
 ---
 
+## 🗄️ Database
+
+The project uses **MySQL**. The schema includes tables for:
+
+| Table | Description |
+|:---:|:---|
+| `users` | Registered users & authentication |
+| `hotels` | Hotel listings & details |
+| `restaurants` | Restaurant listings |
+| `surf_courses` | Surf course catalog |
+| `activities` | Local activities |
+| `bookings` | All user bookings |
+| `favorites` | User saved favorites |
+| `loyalty_points` | Points earned per user |
+| `rewards` | Redeemable rewards catalog |
+| `notifications` | User notification log |
+| `payments` | Stripe payment records |
+
+To import:
+\`\`\`bash
+# Via CLI
+mysql -u root -p taghazout < database/taghazout.sql
+
+# Or via phpMyAdmin (recommended for beginners)
+\`\`\`
+
 ---
 
-# 🏆 مقارنة سريعة
+## 💳 Stripe Payments
 
-| المشروع | الصعوبة | الـ CV Impact | الوقت |
-|---|---|---|---|
-| 🏥 ClinicFlow | ⭐⭐⭐⭐ | 🔥🔥🔥🔥🔥 | ~8 أسابيع |
-| 🏠 DarMa | ⭐⭐⭐⭐⭐ | 🔥🔥🔥🔥🔥 | ~8.5 أسابيع |
-| 🎓 MadrasaTech | ⭐⭐⭐ | 🔥🔥🔥🔥 | ~7.5 أسابيع |
-| 🛒 SouqPro | ⭐⭐⭐⭐⭐ | 🔥🔥🔥🔥🔥 | ~8.5 أسابيع |
-| 🍕 Tabel | ⭐⭐⭐⭐ | 🔥🔥🔥🔥🔥 | ~8 أسابيع |
+This project uses [Stripe](https://stripe.com) for secure payment processing.
 
----
+1. Create a free account at [stripe.com](https://stripe.com)
+2. Go to **Developers → API Keys**
+3. Copy your **Publishable key** and **Secret key**
+4. Paste them in `includes/config.php`
 
-## 💡 توصيتي الشخصية
+\`\`\`php
+define('STRIPE_SECRET_KEY', 'sk_test_xxxxxxxxxxxx');
+define('STRIPE_PUBLIC_KEY', 'pk_test_xxxxxxxxxxxx');
+\`\`\`
 
-اختار واحد من هادوك الثلاثة:
-
-- **DarMa** إذا بغيتي شي بيبان فيه design جميل + complexity عالية
-- **ClinicFlow** إذا بغيتي تدخل مجال الـ HealthTech (مطلوب بزاف)
-- **Tabel** إذا بغيتي multi-role + real-time — الأكثر exciting للبناء
+> For testing, use Stripe's test card: `4242 4242 4242 4242` — any future date — any CVC
 
 ---
 
-*كل مشروع من هاد 5 يقدر يكون portfolio piece قوي. الفرق بين مشروع عادي ومشروع impressive هو التفاصيل: error handling، security (CSRF, SQL injection protection)، responsive design، وREADME مزيانة كديك لي خدمنا ليك فـ Taghazout 😄*
+## 🔐 Security
+
+| File / Folder | Status | Reason |
+|:---:|:---:|:---|
+| `includes/config.php` | 🚫 Gitignored | Contains DB credentials & API keys |
+| `uploads/` | 🚫 Gitignored | User-uploaded files (can be large/sensitive) |
+| `vendor/` | 🚫 Gitignored | Auto-generated by Composer |
+| `*.log` | 🚫 Gitignored | Server error logs |
+| `composer.json` | ✅ Tracked | Defines dependencies |
+| `composer.lock` | ✅ Tracked | Locks exact versions for reproducibility |
+
+---
+
+## 📍 About Taghazout
+
+<div align="center">
+
+*Taghazout (تغازوت) is a small Berber fishing village on Morocco's Atlantic coast,*  
+*located 15km north of Agadir. World-renowned for its surf breaks — Hash Point,*  
+*Anchor Point, Killer Point — it attracts surfers and travelers from across the globe.*
+
+*This platform was built to connect visitors with the authentic local experience.*
+
+<br/>
+
+🌊 **Waves** &nbsp;|&nbsp; 🏄 **Surf** &nbsp;|&nbsp; 🌅 **Sunsets** &nbsp;|&nbsp; 🫖 **Mint Tea** &nbsp;|&nbsp; 🇲🇦 **Morocco**
+
+</div>
+
+---
+
+## 👨‍💻 Author
+
+<div align="center">
+
+**Zakariya**
+
+[![GitHub](https://img.shields.io/badge/GitHub-zakariyaaaaaa-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/zakariyaaaaaa)
+
+<br/>
+
+*Built with ❤️ from Morocco 🇲🇦*
+
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=1E6FD9&height=120&section=footer" width="100%"/>
